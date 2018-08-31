@@ -1,3 +1,13 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: "static_pages#home"
+  get "/supervisor", to: "supervisor/static_pages#home"
+  devise_for :users, :path => 'accounts'
+  resources :users do
+    resources :courses, only: %i(index show) do
+      resources :subjects, only: %i(index show)
+    end
+  end
+  namespace :supervisor do
+    resources :courses
+  end
 end
