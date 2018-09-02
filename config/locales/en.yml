@@ -1,33 +1,45 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  layouts:
+    header:
+      brand: "Training System"
+      home: "Home"
+      my_courses: "My Courses"
+      profile: "User Profile"
+      report: "Report"
+      user: "User: "
+      supervisor: "Role: Supervisor"
+      trainee: "Role: Trainee"
+
+  static_pages:
+    home:
+      welcome: "Welcome to training system."
+      home_page: "Training system home page."
+
+  user_courses:
+    index:
+      total_courses: "Total courses"
+      inprogress: "Inprogress"
+      completed: "Completed"
+      not_started: "Not Started"
+      inprogress_msg: "Course in progress."
+      completed_msg: "You completed this course."
+      not_started_msg: "This course is not started."
+    show:
+      course_name: "Course name"
+      course_desc: "Course description"
+      subject: "Subjects in course"
+      subject_msg: "Here is list of subjects in course"
+      subject_name: "Subject name"
+      subject_sd: "Start date"
+      subject_ed: "End date"
+      subject_stt: "Status"
+      start: "Start"
+
+  subjects:
+    show:
+      tasks: "Tasks"
+      task_msg: "Here is tasks of this subject."
+      subject_name: "Subject name"
+      subject_detail: "Subject detail"
+      back: "Back to course"
+      save: "Save"
