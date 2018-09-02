@@ -1,0 +1,13 @@
+<div class="col-md-12 field">
+  <div class="form-group">
+    <div class="form-group">
+      <%= f.label :detail, "Task detail", class: "bmd-label-floating"%>
+      <%= f.text_area :detail, class: "form-control" %>
+      <%= f.hidden_field :_destroy %>
+      <button type="button" rel="tooltip"
+        class="remove_fields btn btn-danger btn-link btn-sm pull-right">
+        <i class="material-icons">close</i>
+      </button>
+    </div>
+  </div>
+</div>

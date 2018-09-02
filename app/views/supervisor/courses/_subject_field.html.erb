@@ -1,0 +1,56 @@
+<div class="col-md-6 field">
+  <div class="card">
+    <div class="card-header card-header-success">
+      <h4 class="card-title"><%= t ".create_subject" %></h4>
+      <p class="card-category"><%= t ".create_subject_msg" %></p>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= f.label :name, class: "bmd-label-floating" %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= f.label :start_date %>
+            <%= f.date_field :start_date, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <%= f.label :end_date %>
+            <%= f.date_field :end_date, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="form-group">
+              <%= f.label :description, class: "bmd-label-floating" %>
+              <%= f.text_area :description, class: "form-control", rows: Settings.row %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="form-group">
+              <%= f.label :detail, class: "bmd-label-floating" %>
+              <%= f.text_area :detail, class: "form-control", rows: Settings.row %>
+            </div>
+          </div>
+        </div>
+        <%= f.fields_for :tasks do |ff| %>
+          <%= render "task_field", f: ff %>
+        <% end %>
+        <%= f.hidden_field :_destroy %>
+        <%= link_to "remove", '#',
+          class: "remove_fields btn btn-danger btn-sm pull-right" %>
+        <%= link_to_add_fields t(".add_task"), f, :tasks %>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>

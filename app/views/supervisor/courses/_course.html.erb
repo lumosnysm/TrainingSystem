@@ -1,0 +1,36 @@
+<tr>
+  <td>
+    <%= course.name %>
+  </td>
+  <td>
+    <%= course.start_date %>
+  </td>
+  <td>
+    <%= course.start_date %>
+  </td>
+  <td>
+    <% if course.status.nil? %>
+      <%= form_for course, url: supervisor_course_path(course) do |f| %>
+        <%= f.hidden_field :status, value: 0 %>
+        <%= f.submit t(".start"), class: "btn btn-success btn-sm" %>
+      <% end %>
+    <% elsif course.status %>
+      <p class="text-danger"><%= t ".finished" %></p>
+    <% else %>
+      <%= form_for course, url: supervisor_course_path(course) do |f| %>
+        <%= f.hidden_field :status, value: 1 %>
+        <%= f.submit t(".finish"), class: "btn btn-danger btn-sm" %>
+      <% end %>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to edit_supervisor_course_path(course),
+      class: "btn btn-primary btn-link btn-sm",rel: "tooltip", title: t(".edit") do %>
+       <i class="material-icons">edit</i>
+    <% end %>
+    <%= link_to supervisor_course_path(course), method: :delete,
+      data: {confirm: t(".confirm")}, class: "btn btn-danger btn-link btn-sm",rel: "tooltip",title: t(".delete") do %>
+       <i class="material-icons">close</i>
+    <% end %>
+  </td>
+</tr>

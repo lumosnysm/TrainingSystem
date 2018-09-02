@@ -1,0 +1,45 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title "><%= t ".courses" %></h4>
+            <p class="card-category">
+              <%= t(".courses_total", count: Course.count) %>
+            </p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>
+                    <%= t ".course_name" %>
+                  </th>
+                  <th>
+                    <%= t ".course_sd" %>
+                  </th>
+                  <th>
+                    <%= t ".course_ed" %>
+                  </th>
+                  <th>
+                    <%= t ".course_stt" %>
+                  </th>
+                  <th>
+                    #
+                  </th>
+                </thead>
+                <tbody>
+                  <%= render @courses %>
+                </tbody>
+              </table>
+              <%= paginate @courses %>
+              <%= link_to t(".add_course"), new_supervisor_course_path,
+                class: "btn btn-primary pull-right" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

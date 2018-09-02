@@ -10,6 +10,7 @@ en:
       supervisor: "Role: Supervisor"
       trainee: "Role: Trainee"
       create_account: "Create Account"
+      courses: "Courses"
 
   static_pages:
     home:
@@ -44,3 +45,44 @@ en:
       subject_detail: "Subject detail"
       back: "Back to course"
       save: "Save"
+
+  supervisor:
+    courses:
+      index:
+        courses: "All courses"
+        courses_total: "Total course: %{count} courses"
+        course_name: "Course name"
+        course_sd: "Start date"
+        course_ed: "End date"
+        course_stt: "Status"
+        add_course: "Add new course"
+      new:
+        create_course: "Course"
+        create_course_msg: "Create a new course"
+        submit: "Create course"
+        add_subject: "Add subject"
+      course:
+        edit: "Edit"
+        delete: "Delete"
+        confirm: "You sure ?"
+        start: "Start"
+        finish: "Finish"
+        finished: "Finished"
+      edit:
+        create_course: "Course"
+        create_course_msg: "Create a new course"
+        submit: "Update course"
+        add_subject: "Add subject"
+      subject_field:
+        create_subject: "Subject"
+        create_subject_msg: "Create a new subject"
+        add_task: "Add task"
+      create:
+        create_success: "Course created!"
+        create_fail: "Fail to create course!"
+      update:
+        update_success: "Course updated!"
+        update_fail: "Fail to update course!"
+      destroy:
+        destroy_success: "Course deleted!"
+        destroy_fail: "Fail to delete course!"

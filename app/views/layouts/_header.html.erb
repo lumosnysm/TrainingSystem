@@ -24,6 +24,12 @@
             <p><%= t ".create_account" %></p>
           <% end %>
         </li>
+        <li class="nav-item">
+          <%= link_to supervisor_courses_path, class: "nav-link" do %>
+            <i class="material-icons">content_paste</i>
+            <p><%= t ".courses" %></p>
+          <% end %>
+        </li>
       <% else %>
         <li class="nav-item">
           <%= link_to "#", class: "nav-link" do %>
@@ -72,4 +78,3 @@
       </div>
     </div>
   </nav>
-
