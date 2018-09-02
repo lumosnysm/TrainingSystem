@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TrainingSystem</title>
+    <title><%= full_title yield(:title) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="colorlib-loader"></div>
+    <div id="page">
+      <%= render "layouts/header" %>
+      <%= yield %>
+      <div class="gototop js-top">
+        <a href="#" class="js-gotop"><i class="icon-arrow-up2"></i></a>
+      </div>
+    </div>
+    <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
   </body>
 </html>

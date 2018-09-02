@@ -14,6 +14,8 @@ gem "bootsnap", ">= 1.1.0", require: false
 gem "font-awesome-rails"
 gem "stroke-seven-rails"
 gem "config"
+gem "devise"
+gem "ffaker"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]

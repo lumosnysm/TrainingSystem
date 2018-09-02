@@ -1,0 +1,4 @@
+vi:
+  layouts:
+    application:
+      title_base: "Training System"
