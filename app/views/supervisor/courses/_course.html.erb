@@ -1,6 +1,6 @@
 <tr>
   <td>
-    <%= course.name %>
+    <%= link_to course.name, supervisor_course_path(course), class: "text-dark" %>
   </td>
   <td>
     <%= course.start_date %>

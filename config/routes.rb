@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :subjects, only: :show
   end
   namespace :supervisor do
+    resources :members
     resources :courses do
       resources :subjects
     end

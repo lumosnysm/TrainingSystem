@@ -7,4 +7,12 @@ module ApplicationHelper
     end
     link_to name, "#", class: "add_fields btn btn-primary btn-sm h-25", data: {id: id, fields: fields.gsub("\n", "")}
   end
+
+  def find_member user, course
+    member = Member.find_by user_id: user.id, course_id: course.id
+    if member.nil?
+      flash[:danger] = member.id
+    end
+    return member
+  end
 end
