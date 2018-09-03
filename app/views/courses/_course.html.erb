@@ -1,0 +1,22 @@
+<div class="col-md-4">
+  <div class="card card-chart">
+    <div class="card-header card-header-success">
+      <h4 class="card-title"><%= t ".completed" %></h4>
+      <p class="card-category"><%= t ".completed_msg" %></p>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title">
+        <%= course.name %>
+      </h4>
+      <p class="card-category">
+        <%= "#{course.start_date} - #{course.end_date}" %>
+      </p>
+    </div>
+    <div class="card-footer">
+      <div class="stats">
+        <i class="material-icons"><%= Settings.icons_access_time %></i>
+      </div>
+      <button class="btn btn-success btn-sm"><%= t ".start" %></button>
+    </div>
+  </div>
+</div>

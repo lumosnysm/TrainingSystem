@@ -17,7 +17,23 @@ en:
       welcome: "Welcome to training system."
       home_page: "Training system home page."
 
-  user_courses:
+  subjects:
+    show:
+      tasks: "Tasks"
+      task_msg: "Here is tasks of this subject."
+      subject_name: "Subject name"
+      subject_detail: "Subject detail"
+      back: "Back to course"
+      save: "Save"
+    subject:
+      not_start: "Not Start"
+      finished: "Finished"
+      start: "Start"
+
+  courses:
+    course:
+      completed: "Completed"
+      start: "Start"
     index:
       total_courses: "Total courses"
       inprogress: "Inprogress"
@@ -36,15 +52,6 @@ en:
       subject_ed: "End date"
       subject_stt: "Status"
       start: "Start"
-
-  subjects:
-    show:
-      tasks: "Tasks"
-      task_msg: "Here is tasks of this subject."
-      subject_name: "Subject name"
-      subject_detail: "Subject detail"
-      back: "Back to course"
-      save: "Save"
 
   supervisor:
     courses:

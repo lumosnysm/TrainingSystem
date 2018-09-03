@@ -1,0 +1,54 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-info">
+            <h4 class="card-title ">
+              <%= @course.name %>
+            </h4>
+            <p class="card-category">
+              <%= @course.description %>
+            </p>
+          </div>
+          <div class="card-body">
+            <p>
+              <%= @course.detail %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title "><%= t ".subject" %></h4>
+            <p class="card-category"><%= t ".subject_msg" %></p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                <th>
+                  <%= t ".subject_name" %>
+                </th>
+                <th>
+                  <%= t ".subject_sd" %>
+                </th>
+                <th>
+                  <%= t ".subject_ed" %>
+                </th>
+                <th>
+                  <%= t ".subject_stt" %>
+                </th>
+                </thead>
+                <tbody>
+                  <%= render @subjects %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
