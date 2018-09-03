@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     controllers: {sessions: "sessions", registrations: "users"}
   resources :users
   resources :courses do
-    resources :subjects, only: :show
+    resources :subjects, only: %i(show update) do
+      resources :user_subjects
+    end
   end
   namespace :supervisor do
     resources :members

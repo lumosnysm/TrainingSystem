@@ -4,4 +4,6 @@ class Subject < ApplicationRecord
   validates :start_date, :end_date, :name, :detail, presence: true
   accepts_nested_attributes_for :tasks, allow_destroy: true
   has_many :user_subjects
+  has_many :user_tasks
+
 end

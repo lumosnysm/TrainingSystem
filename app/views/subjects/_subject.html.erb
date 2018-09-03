@@ -9,12 +9,24 @@
     <%= subject.end_date %>
   </td>
   <td>
-    <% if subject.status.nil? %>
-      <p class="text-danger"><%= t ".not_start" %></p>
-    <% elsif subject.status %>
-      <p class="text-warning"><%= t ".finished" %></p>
+    <% unless subject.status %>
+      <% if subject.tasks.count > 0 %>
+        <% user_subject = find_user_subject(current_user, subject) %>
+        <% if user_subject.user_tasks.count > 0 %>
+          <%= link_to t(".next"), course_subject_path(@course, subject), class: "btn btn-success btn-sm btn-block" %>
+        <% else %>
+          <%= form_for find_user_subject(current_user, subject),
+            url: course_subject_user_subject_path(@course, subject, find_user_subject(current_user, subject)) do |f| %>
+            <%= f.submit t(".start"), class: "btn btn-primary btn-sm btn-block" %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <button class="btn btn-warning btn-sm btn-block">
+          <%= t ".no_tasks" %></button>
+      <% end %>
     <% else %>
-      <button class="btn btn-primary btn-sm"><%= t ".start" %></button>
+      <button class="btn btn-danger btn-sm btn-block">
+        <%= t ".not_start" %></button>
     <% end %>
   </td>
 </tr>

@@ -3,6 +3,7 @@ class Course < ApplicationRecord
   has_many :users_in, class_name: Member.name,
     foreign_key: :course_id, dependent: :destroy
   has_many :users, through: :users_in, source: :user
+  has_many :user_subjects
   scope :lastest, ->{order updated_at: :desc}
   scope :fields, ->{select :id, :name, :start_date, :end_date, :status}
   validates :start_date, :end_date, :name, presence: true
