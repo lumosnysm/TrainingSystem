@@ -9,6 +9,7 @@ en:
       user: "User: "
       supervisor: "Role: Supervisor"
       trainee: "Role: Trainee"
+      create_account: "Create Account"
 
   static_pages:
     home:
