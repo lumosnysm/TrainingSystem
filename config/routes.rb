@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   devise_for :users, path: "account",
     controllers: {sessions: "sessions", registrations: "users"}
   resources :users
-  resources :user_courses, only: %i(index show)
   resources :courses do
     resources :subjects, only: :show
   end

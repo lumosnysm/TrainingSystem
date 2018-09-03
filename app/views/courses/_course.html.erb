@@ -16,7 +16,17 @@
       <div class="stats">
         <i class="material-icons"><%= Settings.icons_access_time %></i>
       </div>
-      <button class="btn btn-success btn-sm"><%= t ".start" %></button>
+      <% if course.status.nil? %>
+        <p class="text-danger"><%= t ".not_start" %></p>
+      <% else %>
+        <% if course_start(course) %>
+          <%= link_to t(".next"), course_path(course), class: "text-success" %>
+        <% else %>
+          <%= form_for course do |f| %>
+            <%= f.submit t(".start"), class: "btn btn-success btn-sm" %>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

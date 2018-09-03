@@ -7,4 +7,7 @@ class User < ApplicationRecord
   scope :trainee, ->{where supervisor: false}
   scope :supervisor, ->{where supervisor: true}
   scope :not_in_course, ->(course) {where.not id: course.users.ids}
+  has_many :user_subjects, class_name: UserSubject.name,
+           foreign_key: :user_id
+  has_many :courses_started, through: :user_subjects, source: :course
 end
