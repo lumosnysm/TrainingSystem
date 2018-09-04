@@ -1,0 +1,40 @@
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100 p-t-50 p-b-90">
+      <span class="login100-form-title p-b-51">
+        <%= t ".login" %>
+      </span>
+      <% if notice %>
+        <p class="text-warning"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="text-danger"><%= alert %></p>
+      <% end %>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name),
+        html: {class: "login100-form flex-sb flex-w"}) do |f| %>
+        <div class="wrap-input100 validate-input m-b-16">
+          <%= f.email_field :email, autofocus: true,
+            autocomplete: "email", class: "input100", placeholder: t(".username") %>
+          <span class="focus-input100"></span>
+        </div>
+        <div class="wrap-input100 validate-input m-b-16">
+          <%= f.password_field :password,
+            autocomplete: "current-password", class: "input100",
+              placeholder: t(".password") %>
+          <span class="focus-input100"></span>
+        </div>
+        <% if devise_mapping.rememberable? -%>
+          <div class="flex-sb-m w-full p-t-3 p-b-24">
+            <div class="contact100-form-checkbox">
+              <%= f.check_box :remember_me, class: "input-checkbox100" %>
+              <%= f.label :remember_me, class: "label-checkbox100" %>
+            </div>
+          </div>
+        <% end -%>
+        <div class="container-login100-form-btn m-t-17">
+          <%= f.submit t(".login"), class: "login100-form-btn" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

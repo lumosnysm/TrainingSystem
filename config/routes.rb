@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: "static_pages#home"
+  devise_for :users, path: "account", controllers: {sessions: "sessions"}
+  resources :users
+  resources :user_courses, only: %i(index show)
+  resources :courses do
+    resources :subjects, only: :show
+  end
 end
