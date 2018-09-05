@@ -17,6 +17,7 @@ gem "stroke-seven-rails"
 gem "config"
 gem "devise"
 gem "ffaker"
+gem "cancancan"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
