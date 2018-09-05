@@ -49,6 +49,14 @@ en:
         username: "Username"
         password: "Password"
         password_confirmation: "Password confirmation"
+      edit:
+        edit: "Edit"
+        username: "Username"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        min_char: "characters minimum"
+        update: "Update"
+        current_password: "Current password"
     sessions:
       signed_in: "Signed in successfully."
       signed_out: "Signed out successfully."

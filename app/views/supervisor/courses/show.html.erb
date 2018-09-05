@@ -1,0 +1,168 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header card-header-warning">
+            <h4 class="card-title ">
+              <%= t(".trainees_in_course", count: @course.users.trainee.count) %>
+            </h4>
+            <p class="card-category"><%= t ".trainees_in_course_msg" %></p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                  <th>
+                    <%= t ".trainee" %>
+                  </th>
+                  <th>
+                    #
+                  </th>
+                </thead>
+                <tbody id="trainees_in">
+                  <%= render partial: "user_in_course",
+                    collection: @trainees_in_course, as: :user %>
+                </tbody>
+                <div id="paginator_trainees_in">
+                  <%= paginate @trainees_in_course,
+                    remote: true %>
+                </div>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header card-header-warning">
+            <h4 class="card-title ">
+              <%= t(".trainees_not_in_course",
+                count: User.trainee.not_in_course(@course).count) %>
+              </h4>
+            <p class="card-category"><%= t ".trainees_not_in_course_msg" %></p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                  <th>
+                    <%= t ".trainee" %>
+                  </th>
+                  <th>
+                    #
+                  </th>
+                </thead>
+                <tbody id="trainees_not_in">
+                  <%= render partial: "user_not_in_course",
+                    collection: @trainees_not_in_course, as: :user %>
+                </tbody>
+                <div id="paginator_trainees_not_in">
+                  <%= paginate @trainees_not_in_course,
+                    param_name: "trainees_not_in", remote: true %>
+                </div>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title ">
+              <%= t(".supervisors_in_course",
+                count: @course.users.supervisor.count)  %>
+            </h4>
+            <p class="card-category"><%= t ".supervisors_in_course_msg" %></p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                  <th>
+                    <%= t ".supervisor" %>
+                  </th>
+                  <th>
+                    #
+                  </th>
+                </thead>
+                <tbody id="supervisors_in">
+                  <%= render partial: "user_in_course",
+                    collection: @supervisors_in_course, as: :user %>
+                </tbody>
+                <div id="paginator_supervisors_in">
+                  <%= paginate @supervisors_in_course, param_name: "supervisors_in",
+                    remote: true %>
+                </div>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title ">
+              <%= t(".supervisors_not_in_course",
+                count: User.supervisor.not_in_course(@course).count) %>
+            </h4>
+            <p class="card-category"><%= t ".supervisors_not_in_course_msg" %></p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                  <th>
+                    <%= t ".supervisor" %>
+                  </th>
+                  <th>
+                    #
+                  </th>
+                </thead>
+                <tbody id="supervisors_not_in">
+                  <%= render partial: "user_not_in_course",
+                    collection: @supervisors_not_in_course,
+                      as: :user %>
+                </tbody>
+                <div id="paginator_supervisors_not_in">
+                  <%= paginate @supervisors_not_in_course, param_name: "supervisors_not_in", remote: true %>
+                </div>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title "><%= t ".subject" %><%= @course.name %></h4>
+            <p class="card-category"><%= t ".subject_msg" %></p>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                  <th>
+                    <%= t ".subject_name" %>
+                  </th>
+                  <th>
+                    <%= t ".subject_sd" %>
+                  </th>
+                  <th>
+                    <%= t ".subject_ed" %>
+                  </th>
+                  <th>
+                    <%= t ".subject_stt" %>
+                  </th>
+                </thead>
+                <tbody>
+                  <%= render @subjects %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

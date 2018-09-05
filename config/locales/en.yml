@@ -56,6 +56,23 @@ en:
         course_ed: "End date"
         course_stt: "Status"
         add_course: "Add new course"
+      show:
+        subject: "Subjects in course: "
+        subject_msg: "Here is list of subjects in course"
+        subject_name: "Subject name"
+        subject_sd: "Start date"
+        subject_ed: "End date"
+        subject_stt: "Status"
+        trainees_in_course: "Trainees in course: %{count}"
+        trainee: "Trainee"
+        trainees_in_course_msg: "Here is list of trainees in courses"
+        supervisors_in_course: "Supervisors in course: %{count}"
+        supervisor: "Supervisor"
+        supervisors_in_course_msg: "Here is list of supervisors in courses"
+        supervisors_not_in_course: "Supervisors not in course: %{count}"
+        supervisors_not_in_course_msg: "Here is list of supervisors not in courses"
+        trainees_not_in_course: "Trainees not in course: %{count}"
+        trainees_not_in_course_msg: "Here is list of trainees not in courses"
       new:
         create_course: "Course"
         create_course_msg: "Create a new course"
@@ -86,3 +103,28 @@ en:
       destroy:
         destroy_success: "Course deleted!"
         destroy_fail: "Fail to delete course!"
+      user_course:
+        delete: "Delete"
+        confirm: "You sure ?"
+      user_not_in_course:
+        add: "Add to course"
+      user_in_course:
+        remove: "Remove from course"
+        confirm: "You sure ?"
+
+    members:
+      destroy:
+        deleted_success: "Member deleted!"
+        deleted_fail: "Fail to delete member!"
+      create:
+        create_success: "Member created!"
+        create_fail: "Fail to create member!"
+
+    subjects:
+      subject:
+        start: "Start"
+        finish: "Finish"
+        finished: "Finished"
+      update:
+        update_success: "Subject updated!"
+        update_fail: "Fail to update subject!"

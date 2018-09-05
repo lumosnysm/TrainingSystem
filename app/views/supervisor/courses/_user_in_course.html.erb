@@ -1,0 +1,9 @@
+<tr>
+  <td>
+    <%= user.email %>
+  </td>
+  <td>
+    <%= link_to t(".remove"), supervisor_member_path(find_member(user, @course)),
+      method: :delete, data: {confirm: t(".confirm")}, class: "btn btn-danger btn-danger btn-sm" %>
+  </td>
+</tr>

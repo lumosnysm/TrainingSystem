@@ -1,0 +1,12 @@
+<tr>
+  <td>
+    <%= user.email %>
+  </td>
+  <td>
+    <%= link_to supervisor_member_path(user), method: :delete,
+      data: {confirm: t(".confirm")}, class: "btn btn-danger btn-link btn-sm",
+      rel: "tooltip", title: t(".delete") do %>
+       <i class="material-icons">close</i>
+    <% end %>
+  </td>
+</tr>

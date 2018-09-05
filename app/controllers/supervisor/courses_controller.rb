@@ -1,6 +1,6 @@
 module Supervisor
   class CoursesController < SupervisorBaseController
-    before_action :load_course, only: %i(edit update destroy)
+    before_action :load_course, except: %i(index new)
 
     def index
       @courses = Course.fields.lastest.
@@ -9,6 +9,19 @@ module Supervisor
 
     def new
       @course = Course.new
+    end
+
+    def show
+      @subjects = @course.subjects
+      @trainees_in_course = @course.users.trainee.
+        page(params[:trainees_in]).per Settings.per_page
+      @trainees_not_in_course = User.trainee.not_in_course(@course).
+        page(params[:trainees_not_in]).per Settings.per_page
+      @supervisors_in_course = @course.users.supervisor.
+        page(params[:supervisors_in]).per Settings.per_page
+      @supervisors_not_in_course = User.supervisor.not_in_course(@course).
+        page(params[:supervisors_not_in]).per Settings.per_page
+      @member = Member.new
     end
 
     def edit; end

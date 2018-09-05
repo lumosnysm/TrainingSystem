@@ -1,0 +1,12 @@
+<tr>
+  <td>
+    <%= user.email %>
+  </td>
+  <td>
+    <%= form_for @member, url: supervisor_members_path do |f| %>
+    <%= f.hidden_field :user_id, value: user.id %>
+    <%= f.hidden_field :course_id, value: @course.id %>
+    <%= f.submit t(".add"), class: "btn btn-success btn-sm" %>
+    <% end %>
+  </td>
+</tr>

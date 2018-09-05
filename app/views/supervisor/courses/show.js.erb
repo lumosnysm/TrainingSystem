@@ -1,0 +1,8 @@
+$('#trainees_in').html("<%= j render partial: 'user_in_course', collection: @trainees_in_course, as: :user %>");
+$('#paginator_trainees_in').html("<%= j paginate(@trainees_in_course, param_name: 'trainees_in', remote: true) %>");
+$('#trainees_not_in').html("<%= j render partial: 'user_not_in_course', collection: @trainees_not_in_course, as: :user %>");
+$('#paginator_trainees_not_in').html("<%= j paginate(@trainees_not_in_course, param_name: 'trainees_not_in', remote: true) %>");
+$('#supervisors_in').html("<%= j render partial: "user_in_course", collection: @supervisors_in_course, as: :user %>");
+$('#paginator_supervisors_in').html("<%= j paginate(@supervisors_in_course, param_name: 'supervisors_in', remote: true) %>");
+$('#supervisors_not_in').html("<%= j render partial: "user_not_in_course", collection: @supervisors_not_in_course, as: :user %>");
+$('#paginator_supervisors_not_in').html("<%= j paginate(@supervisors_not_in_course, param_name: 'supervisors_not_in', remote: true) %>");
