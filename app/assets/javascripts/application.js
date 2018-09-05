@@ -7,3 +7,4 @@
 //= require js/material-dashboard.min.js
 //= require nav_active.js
 //= require notification.js
+//= require add_subject_field.js
