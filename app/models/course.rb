@@ -14,4 +14,8 @@ class Course < ApplicationRecord
   validates :start_date, :end_date, :name, presence: true
   accepts_nested_attributes_for :subjects, allow_destroy: true
   delegate :name, to: :user, prefix: :user, allow_nil: true
+
+  def check_closed
+    self.closed?
+  end
 end

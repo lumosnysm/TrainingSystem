@@ -13,7 +13,13 @@ class User < ApplicationRecord
   has_many :courses_started, through: :user_subjects, source: :course
 
   def check_course_start course
-    user_subjects.where(course_id: course.id).count == 0
+    user_subjects.where(course_id: course.id).count > 0
+  end
+
+  def check_subject_start subject
+    user_subject = UserSubject.find_by user_id: self.id, subject_id: subject.id
+    return false unless user_subject
+    UserTask.where(user_subject_id: user_subject.id).count > 0
   end
 
   def count_courses_locked
@@ -33,5 +39,28 @@ class User < ApplicationRecord
   def count_courses_completed
     cs_started = courses_started.not_closed.distinct.count
     cs_started - count_courses_inprogress
+  end
+
+  def check_course_done course
+    user_subjects.where(course_id: course.id).find_by_status(true).count ==
+      course.subjects.count
+  end
+
+  def check_subject_done subject
+    user_subject = UserSubject.find_by(user_id: self.id, subject_id: subject.id)
+    return false unless user_subject
+    return user_subject.status
+  end
+
+  def check_task_done task, subject
+    user_subject = UserSubject.find_by(user_id: self.id, subject_id: subject.id)
+    return false unless user_subject
+    user_task = UserTask.find_by(task_id: task.id, user_subject_id: user_subject.id)
+    return false unless user_task
+    return user_task.status
+  end
+
+  def correct_user user
+    self == user
   end
 end
