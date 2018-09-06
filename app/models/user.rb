@@ -7,6 +7,7 @@ class User < ApplicationRecord
   scope :trainee, ->{where supervisor: false}
   scope :supervisor, ->{where supervisor: true}
   scope :not_in_course, ->(course) {where.not id: course.users.ids}
+  scope :lastest, ->{order created_at: :desc}
   has_many :user_subjects, class_name: UserSubject.name,
            foreign_key: :user_id
   has_many :courses_started, through: :user_subjects, source: :course
@@ -16,11 +17,11 @@ class User < ApplicationRecord
   end
 
   def count_courses_locked
-    courses.distinct.courses_locked.count
+    courses.distinct.find_by_status(Course.statuses[:locked]).count
   end
 
   def count_courses_inprogress
-    courses.courses_opening.
+    courses.find_by_status(Course.statuses[:opening]).
     find_by_ids(user_subjects.find_by_status(false).
     group(:course_id).pluck(:course_id)).count
   end
