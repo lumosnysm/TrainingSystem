@@ -1,2 +1,7 @@
 per_page: 8
 row: 6
+icons_search: search
+icons_cached: cached
+icons_done: done
+icons_https: https
+icons_access_time: access_time
