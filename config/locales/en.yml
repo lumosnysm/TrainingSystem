@@ -83,6 +83,7 @@ en:
     update:
       create_success: "Course created"
       create_fail: "Fail to create course!"
+
   user_subjects:
     update:
       create_success: "Subject Created"
@@ -134,6 +135,22 @@ en:
   users:
     edit:
       not_correct_user: "You are not the correct user!!!"
+    show:
+      trainee: "Role: Trainee"
+      supervisor: "Role: Supervisor"
+      created: "Created: "
+      updated: "Updated: "
+      ago: "ago."
+      email: "Email: "
+      courses_in: "User's courses (%{count} courses): "
+      edit: "Edit profile"
+      closed: "(Closed)"
+      not_start: "(Not start)"
+      inprogress: "(Inprogress)"
+      done: "(Done)"
+      not_done: "(Not done)"
+      search: "Search by course's name"
+      results_found: "%{count} results found."
 
   supervisor:
     courses:

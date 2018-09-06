@@ -1,9 +1,15 @@
 class UsersController < Devise::RegistrationsController
-  layout "login"
+  layout "login", except: :show
   prepend_before_action :require_no_authentication, only: :cancel
   load_and_authorize_resource except: :create
   before_action :load_resource, :correct_user, only: %i(edit update destroy)
   before_action :configure_permitted_parameters, only: :update
+  before_action :load_user, only: :show
+
+  def show
+    @q = @user.courses.ransack params[:q]
+    @courses = @q.result.sort_by_date.page(params[:page]).per Settings.per_page
+  end
 
   def edit; end
 
@@ -59,6 +65,13 @@ class UsersController < Devise::RegistrationsController
     return if current_user.supervisor?
     return if current_user == self.resource
     flash[:danger] = t ".not_correct_user"
+    redirect_back fallback_location: root_url
+  end
+
+  def load_user
+    @user = User.find_by id: params[:id]
+    return if @user
+    flash[:danger] = t ".user_not_found"
     redirect_back fallback_location: root_url
   end
 end
