@@ -1,6 +1,7 @@
 class UserSubjectsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_subject, :load_course, :load_user_subject
+  after_action :check_subject_complete
 
   def update
     if params[:commit] == "Start"
@@ -14,6 +15,13 @@ class UserSubjectsController < ApplicationController
         flash[:danger] = t ".create_fail"
         redirect_back fallback_location: root_url
       end
+    elsif params[:commit] == "Save"
+      if @user_subject.update_attributes user_subject_params
+        flash[:success] = t ".create_success"
+      else
+        flash[:danger] = t ".create_fail"
+      end
+      redirect_back fallback_location: root_url
     end
   end
 
@@ -38,5 +46,14 @@ class UserSubjectsController < ApplicationController
     return if @user_subject
     flash[:danger] = t ".user_subject_not_exist"
     redirect_back fallback_location: root_url
+  end
+
+  def user_subject_params
+    params.require(:user_subject).permit :status, user_tasks_attributes: [:id, :status]
+  end
+
+  def check_subject_complete
+    return unless @user_subject.user_tasks.find_by_status(true).count == @subject.tasks.count
+    @user_subject.update_attributes status: true
   end
 end

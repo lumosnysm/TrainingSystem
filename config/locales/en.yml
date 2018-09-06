@@ -19,7 +19,7 @@ en:
 
   subjects:
     show:
-      tasks: "Tasks"
+      tasks: "Tasks: %{count}"
       task_msg: "Here is tasks of this subject."
       subject_name: "Subject name"
       subject_detail: "Subject detail"
@@ -34,6 +34,8 @@ en:
       start: "Start"
       next: "Next"
       no_tasks: "No tasks"
+      completed: "Completed"
+      subject_closed: "Subject closed"
 
   courses:
     course:
@@ -49,16 +51,23 @@ en:
       inprogress_msg: "Course in progress."
       completed_msg: "You completed this course."
       not_started_msg: "This course is not started."
+      not_started_or_closed: "Locked"
+      your_courses: "Your Courses"
+      name: "Course's name"
+      start: "Start date"
+      end: "End date"
+      status: "Status"
     show:
       course_name: "Course name"
       course_desc: "Course description"
-      subject: "Subjects in course"
+      subject: "Subjects in course: %{count}"
       subject_msg: "Here is list of subjects in course"
       subject_name: "Subject name"
       subject_sd: "Start date"
       subject_ed: "End date"
       subject_stt: "Status"
       start: "Start"
+      course_not_started: "This course is not started."
   user_subjects:
     update:
       create_success: "Create success"

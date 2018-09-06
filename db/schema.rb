@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2018_09_05_145815) do
     t.text "detail"
     t.date "start_date"
     t.date "end_date"
-    t.boolean "status"
+    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2018_09_05_145815) do
     t.text "detail"
     t.date "start_date"
     t.date "end_date"
-    t.boolean "status"
+    t.integer "status", default: 0
     t.integer "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

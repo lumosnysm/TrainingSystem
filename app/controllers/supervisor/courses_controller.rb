@@ -1,6 +1,6 @@
 module Supervisor
   class CoursesController < SupervisorBaseController
-    before_action :load_course, except: %i(index new)
+    before_action :load_course, except: %i(index new create)
 
     def index
       @courses = Course.fields.lastest.
