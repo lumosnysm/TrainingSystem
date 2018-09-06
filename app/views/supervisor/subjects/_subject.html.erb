@@ -9,16 +9,16 @@
     <%= subject.end_date %>
   </td>
   <td>
-    <% if subject.status.nil? %>
+    <% if subject.locked? %>
       <%= form_for subject, url: supervisor_course_subject_path(@course, subject) do |f| %>
-        <%= f.hidden_field :status, value: 0 %>
+        <%= f.hidden_field :status, value: Subject.statuses[:opening] %>
         <%= f.submit t(".start"), class: "btn btn-success btn-sm" %>
       <% end %>
-    <% elsif subject.status %>
+    <% elsif subject.closed? %>
       <p class="text-danger"><%= t ".finished" %></p>
     <% else %>
       <%= form_for subject, url: supervisor_course_subject_path(@course, subject) do |f| %>
-        <%= f.hidden_field :status, value: 1 %>
+        <%= f.hidden_field :status, value: Subject.statuses[:closed] %>
         <%= f.submit t(".finish"), class: "btn btn-danger btn-sm" %>
       <% end %>
     <% end %>

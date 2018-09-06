@@ -2,6 +2,14 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
+        <%= search_form_for @q, url: supervisor_courses_path,
+          class: "navbar-form w-50" do |f| %>
+          <div class="input-group no-border">
+            <%= f.search_field :name_cont, class: "form-control",
+              placeholder: t(".search") %>
+            <%= f.submit class:"btn btn-primary btn-sm" %>
+          </div>
+        <% end %>
         <div class="card">
           <div class="card-header card-header-primary">
             <h4 class="card-title "><%= t ".courses" %></h4>
@@ -10,17 +18,28 @@
             </p>
           </div>
           <div class="card-body">
+            <%= paginate @courses %>
+            <%= t(".results_found", count: @q.result.count) %>
             <div class="table-responsive">
               <table class="table">
                 <thead class=" text-primary">
                   <th>
-                    <%= t ".course_name" %>
+                    #
                   </th>
                   <th>
-                    <%= t ".course_sd" %>
+                    <%= sort_link(@q, :name) do %>
+                      <%= t ".course_name" %>
+                    <% end %>
                   </th>
                   <th>
-                    <%= t ".course_ed" %>
+                    <%= sort_link(@q, :start_date) do %>
+                      <%= t ".course_sd" %>
+                    <% end %>
+                  </th>
+                  <th>
+                    <%= sort_link(@q, :end_date) do %>
+                      <%= t ".course_ed" %>
+                    <% end %>
                   </th>
                   <th>
                     <%= t ".course_stt" %>

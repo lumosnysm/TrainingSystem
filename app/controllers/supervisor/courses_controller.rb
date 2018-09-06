@@ -3,8 +3,8 @@ module Supervisor
     before_action :load_course, except: %i(index new create)
 
     def index
-      @courses = Course.fields.lastest.
-        page(params[:page]).per Settings.per_page
+      @q = Course.lastest.ransack params[:q]
+      @courses = @q.result.fields.page(params[:page]).per Settings.per_page
     end
 
     def new
@@ -58,10 +58,12 @@ module Supervisor
     private
 
     def course_params
-      params.require(:course).permit :name, :description,
+      p = params.require(:course).permit :name, :description,
         :start_date, :end_date, :status, subjects_attributes:
         [:id, :name, :description, :detail, :start_date, :end_date, :_destroy,
         tasks_attributes: [:id, :detail, :_destroy]]
+      p[:status] = params[:course][:status].to_i
+      return p
     end
 
     def load_course

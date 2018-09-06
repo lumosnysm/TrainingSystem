@@ -15,8 +15,10 @@ module Supervisor
     private
 
     def subject_params
-      params.require(:subject).permit :name, :description,
+      p = params.require(:subject).permit :name, :description,
         :detail, :start_date, :end_date, :status
+      p[:status] = params[:subject][:status].to_i
+      return p
     end
 
     def load_subject

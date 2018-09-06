@@ -4,15 +4,17 @@ class CoursesController < ApplicationController
   before_action :check_start, only: :show
 
   def index
-    @courses = current_user.courses.not_closed.sort_by_date
-    @total = @courses.count
+    @q = current_user.courses.not_closed.sort_by_date.ransack params[:q]
+    @courses = @q.result.page(params[:page]).per Settings.per_page
+    @total = current_user.courses.not_closed.count
     @locked = current_user.count_courses_locked
     @inprogress = current_user.count_courses_inprogress
     @completed = current_user.count_courses_completed
   end
 
   def show
-    @subjects = @course.subjects
+    @q = @course.subjects.sort_by_date.ransack params[:q]
+    @subjects = @q.result.page(params[:page]).per Settings.per_page
   end
 
   def update
