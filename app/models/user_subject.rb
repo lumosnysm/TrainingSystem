@@ -6,4 +6,6 @@ class UserSubject < ApplicationRecord
   accepts_nested_attributes_for :user_tasks
   scope :find_by_course, ->(course){where course_id: course.id}
   scope :find_by_status, ->(status){where status: status}
+  include PublicActivity::Model
+  tracked owner: Proc.new{|controller, model| controller.current_user}
 end

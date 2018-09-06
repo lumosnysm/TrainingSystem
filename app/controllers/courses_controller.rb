@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+  include PublicActivity::StoreController
   before_action :authenticate_user!
   before_action :load_course, only: %i(show update)
   before_action :check_start, :check_close, only: :show
@@ -15,6 +16,9 @@ class CoursesController < ApplicationController
   def show
     @q = @course.subjects.sort_by_date.ransack params[:q]
     @subjects = @q.result.page(params[:page]).per Settings.per_page
+    @trainees = @course.users.trainee.lastest.page(params[:page]).per Settings.per_page
+    @activities = PublicActivity::Activity.all.order(created_at: :desc).
+      page(params[:page]).per Settings.per_page_50
   end
 
   def update
@@ -23,6 +27,7 @@ class CoursesController < ApplicationController
         @course.user_subjects.build(subject_id: subject.id, user_id: current_user.id)
       end
       if @course.save
+        @course.create_activity :update, owner: current_user
         flash[:success] = t ".create_success"
         redirect_to @course
       else
