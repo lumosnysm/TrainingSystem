@@ -166,6 +166,13 @@ GEM
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
+    paranoia (2.4.1)
+      activerecord (>= 4.0, < 5.3)
+    public_activity (1.6.2)
+      actionpack (>= 3.0.0)
+      activerecord (>= 3.0)
+      i18n (>= 0.5.0)
+      railties (>= 3.0.0)
     public_suffix (3.0.3)
     puma (3.12.0)
     rack (2.0.5)
@@ -279,6 +286,8 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   kaminari
   listen (>= 3.0.5, < 3.2)
+  paranoia
+  public_activity
   puma (~> 3.11)
   rails (~> 5.2.1)
   ransack

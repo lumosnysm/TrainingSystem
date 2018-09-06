@@ -70,6 +70,46 @@
         </div>
         <%= link_to t(".back"), courses_path, class: "btn btn-primary btn-sm pull-right" %>
       </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <%= t(".total_trainees",
+               count: @course.users.trainee.count) %>
+              <table class="table table-hover">
+                <thead class="text-primary">
+                <th>
+                  #
+                </th>
+                <th>
+                  <%= sort_link(@q, :name) do %>
+                    <%= t ".trainee_name" %>
+                  <% end %>
+                </th>
+                </thead>
+                <tbody>
+                  <%= render partial: "trainees_in_course", collection: @trainees,
+                    as: :user %>
+                </tbody>
+              </table>
+              <%= paginate @trainees %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title ">Activity</h4>
+          </div>
+          <div class="card-body">
+            <ul>
+              <%= render_activities @activities %>
+            </ul>
+            <%= paginate @activities %>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

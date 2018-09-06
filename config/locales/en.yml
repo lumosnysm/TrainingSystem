@@ -74,6 +74,12 @@ en:
       search: "Search by name"
       results_found: "%{count} results found."
       course_closed: "Course closed."
+      search: "Search by name"
+      results_found: "%{count} results found."
+      total_trainees: "Trainees in courses: %{count}"
+      trainee_name: "Trainee's name"
+    update:
+      create_success: "Start course"
 
   user_subjects:
     update:
@@ -208,3 +214,49 @@ en:
         edit: "Edit"
         trainee: "Trainee"
         supervisor: "Supervisor"
+
+  public_activity:
+    course:
+      update:
+        ago: "ago"
+        supervisor: "(Supervisor)"
+        trainee: "(Trainee)"
+        you: "You"
+        update_course: ": update this course."
+        start_course: ": start course"
+    user_subject:
+      save_task:
+        you: "You"
+        ago: "ago"
+        trainee: "(Trainee)"
+        save_task: ": saved some tasks"
+      start:
+        you: "You"
+        ago: "ago"
+        trainee: "(Trainee)"
+        start_subject: ": start subject"
+      update:
+        you: "You"
+        ago: "ago"
+        trainee: "(Trainee)"
+        complete_subject: ": complete subject"
+    user_task:
+      update:
+        you: "You"
+        ago: "ago"
+        trainee: "(Trainee)"
+        done_task: ": completed task"
+        not_done_task: ": not complete task"
+    member:
+      create:
+        ago: "ago"
+        supervisor: "(Supervisor)"
+        you: "You"
+        add_trainee: ": add trainee "
+        to_course: " to course."
+      destroy:
+        ago: "ago"
+        supervisor: "(Supervisor)"
+        you: "You"
+        remove_trainee: ": remove trainee "
+        from_course: " from course."

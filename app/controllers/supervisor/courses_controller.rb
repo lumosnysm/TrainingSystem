@@ -1,4 +1,5 @@
 class Supervisor::CoursesController < Supervisor::SupervisorBaseController
+  include PublicActivity::StoreController
   before_action :load_course, except: %i(index new create)
 
   def index
@@ -36,6 +37,7 @@ class Supervisor::CoursesController < Supervisor::SupervisorBaseController
   end
 
   def update
+    @course.create_activity :update, owner: current_user
     @course.update_attributes course_params
     if @course.save
       flash[:success] = t ".update_success"
