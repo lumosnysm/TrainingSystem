@@ -19,7 +19,6 @@
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <%= paginate @users %>
               <%= t(".results_found", count: @q.result.count) %>
               <table class="table table-hover">
                 <thead class="text-primary">
