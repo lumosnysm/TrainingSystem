@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!
   before_action :load_course, only: %i(show update)
-  before_action :check_start, only: %i(show)
+  before_action :check_start, only: :show
 
   def index
     @courses = current_user.courses
