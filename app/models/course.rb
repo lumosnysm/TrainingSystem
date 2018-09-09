@@ -14,4 +14,7 @@ class Course < ApplicationRecord
   validates :start_date, :end_date, :name, presence: true
   accepts_nested_attributes_for :subjects, allow_destroy: true
   delegate :name, to: :user, prefix: :user, allow_nil: true
+  has_many :user_subjects
+  extend FriendlyId
+  friendly_id :name, use: %i(slugged finders)
 end

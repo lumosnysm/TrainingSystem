@@ -17,9 +17,9 @@ class UserSubjectsController < ApplicationController
       end
     elsif params[:commit] == "Save"
       if @user_subject.update_attributes user_subject_params
-        flash[:success] = t ".create_success"
+        flash[:success] = t ".update_success"
       else
-        flash[:danger] = t ".create_fail"
+        flash[:danger] = t ".update_fail"
       end
       redirect_back fallback_location: root_url
     end
@@ -28,17 +28,21 @@ class UserSubjectsController < ApplicationController
   private
 
   def load_subject
-    @subject = Subject.find_by id: params[:subject_id]
-    return if @subject
-    flash[:danger] = t ".subject_not_exist"
-    redirect_back fallback_location: root_url
+    begin
+      @subject = Subject.find params[:subject_id]
+    rescue
+      flash[:danger] = t ".subject_not_exist"
+      redirect_back fallback_location: root_url
+    end
   end
 
   def load_course
-    @course = Course.find_by id: params[:course_id]
-    return if @course
-    flash[:danger] = t ".course_not_exist"
-    redirect_back fallback_location: root_url
+    begin
+      @course = Course.find params[:course_id]
+    rescue
+      flash[:danger] = t ".course_not_exist"
+      redirect_back fallback_location: root_url
+    end
   end
 
   def load_user_subject
