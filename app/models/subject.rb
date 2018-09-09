@@ -6,4 +6,7 @@ class Subject < ApplicationRecord
   validates :start_date, :end_date, :name, :detail, presence: true
   accepts_nested_attributes_for :tasks, allow_destroy: true
   scope :sort_by_date, ->{order start_date: :asc}
+  has_many :user_subjects, dependent: :destroy
+  extend FriendlyId
+  friendly_id :name, use: %i(slugged finders)
 end

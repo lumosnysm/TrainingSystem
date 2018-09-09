@@ -33,6 +33,7 @@ en:
       subject_not_exist: "Subject is not exist"
       user_subject_not_exist: "User subject is not exist"
       subject_not_started: "Subject is not started"
+      course_not_exist: "Course is not exist"
     subject:
       not_start: "Not Start"
       finished: "Finished"
@@ -78,11 +79,16 @@ en:
       search: "Search by name"
       results_found: "%{count} results found."
       course_closed: "Course closed."
-
+      course_not_exist: "Course is not exist"
+    update:
+      create_success: "Course created"
+      create_fail: "Fail to create course!"
   user_subjects:
     update:
-      create_success: "Create success"
-      create_fail: "Create fail"
+      create_success: "Subject Created"
+      create_fail: "Fail to create subject!"
+      update_success: "Task updated!"
+      update_fail: "Fail to update task!"
       subject_not_exist: "Subject is not exist"
       course_not_exist: "Course is not exist"
       subject_not_started: "Subject is not exist"
@@ -125,7 +131,6 @@ en:
     error_messages:
       message: "Messages"
       error: "error"
-
   users:
     edit:
       not_correct_user: "You are not the correct user!!!"
