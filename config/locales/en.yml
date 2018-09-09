@@ -1,4 +1,8 @@
 en:
+  time:
+    formats:
+      long: "%Y/%m/%d"
+
   layouts:
     header:
       brand: "Training System"
@@ -81,6 +85,45 @@ en:
       subject_not_exist: "Subject is not exist"
       course_not_exist: "Course is not exist"
       subject_not_started: "Subject is not exist"
+  reports:
+    report_form:
+      report: "Report"
+    report:
+      confirm: "Confirm"
+      delete: "Delete"
+      edit: "Edit"
+    create:
+      create_success: "Report Created"
+      create_fail: "Fail to create report!"
+      not_correct_user: "Not correct user"
+      report_not_exist: "Report is not exist"
+    update:
+      update_success: "Report updated!"
+      update_fail: "Fail to update report!"
+      not_correct_user: "Not correct user"
+      report_not_exist: "Report is not exist"
+    destroy:
+      destroy_success: "Report deleted!"
+      destroy_fail: "Fail to delete report!"
+      not_correct_user: "Not correct user"
+      report_not_exist: "Report is not exist"
+    edit:
+      report_not_exist: "Report is not exist"
+      not_correct_user: "Not correct user"
+      edit_report: "Edit report"
+    index:
+      add_a_report: "Add a report"
+      your_reports: "Your reports"
+      title: "Title"
+      updated_at: "Updated at"
+      search: "Search"
+      content: "Content"
+    new:
+      add_a_report: "Add a report"
+  shared:
+    error_messages:
+      message: "Messages"
+      error: "error"
 
   users:
     edit:

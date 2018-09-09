@@ -1,0 +1,62 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title"><%= t ".add_a_report" %></h4>
+          </div>
+          <div class="card-body">
+            <%= render "report_form" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <%= search_form_for @q, url: reports_path, class: "navbar-form w-40 pull-right" do |f| %>
+          <div class="input-group no-border">
+            <%= f.search_field :title_cont, class: "form-control border", placeholder: t(".search") %>
+            <%= select_tag :limit, options_from_collection_for_select(Settings.show_limit, :second, :second,
+            selected: params[:limit] || Settings.show_limit.limit), class: "selectpicker", id: "show-limit" %>
+            <%= f.submit class: "btn btn-primary btn-sm" %>
+          </div>
+        <% end %>
+        <div class="card">
+          <div class="card-header card-header-success">
+            <h4 class="card-title "><%= t ".your_reports" %></h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class=" text-primary">
+                <th>#</th>
+                <th>
+                  <%= sort_link(@q, :title) do %>
+                    <%= t ".title" %>
+                  <% end %>
+                </th>
+                <th>
+                  <%= sort_link(@q, :content) do %>
+                    <%= t ".content" %>
+                  <% end %>
+                </th>
+                <th>
+                  <%= sort_link(@q, :created_at) do %>
+                    <%= t ".updated_at" %>
+                  <% end %>
+                </th>
+                <th>#</th>
+                </thead>
+                <tbody>
+                  <%= render @reports %>
+                </tbody>
+              </table>
+              <%= paginate @reports %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
