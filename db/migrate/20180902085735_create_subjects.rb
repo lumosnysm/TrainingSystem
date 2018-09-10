@@ -6,7 +6,7 @@ class CreateSubjects < ActiveRecord::Migration[5.2]
       t.text :detail
       t.date :start_date
       t.date :end_date
-      t.boolean :status
+      t.integer :status, default: 0
       t.references :course, foreign_key: true
 
       t.timestamps

@@ -4,7 +4,11 @@ class CoursesController < ApplicationController
   before_action :check_start, only: :show
 
   def index
-    @courses = current_user.courses
+    @courses = current_user.courses.not_closed.sort_by_date
+    @total = @courses.count
+    @locked = current_user.count_courses_locked
+    @inprogress = current_user.count_courses_inprogress
+    @completed = current_user.count_courses_completed
   end
 
   def show
@@ -37,7 +41,7 @@ class CoursesController < ApplicationController
 
   def check_start
     return if current_user.courses_started.include? @course
-    flash[:danger] = t ".course_started"
+    flash[:danger] = t ".course_not_started"
     redirect_back fallback_location: root_url
   end
 end

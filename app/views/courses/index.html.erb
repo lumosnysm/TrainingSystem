@@ -3,12 +3,12 @@
     <div class="row">
       <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-          <div class="card-header card-header-info card-header-icon">
+          <div class="card-header card-header-primary card-header-icon">
             <div class="card-icon">
               <i class="material-icons"><%= Settings.icons_search %></i>
             </div>
             <p class="card-category"><%= t ".total_courses" %></p>
-            <h3 class="card-title"></h3>
+            <h3 class="card-title"><%= @total %></h3>
           </div>
           <div class="card-footer">
           </div>
@@ -21,7 +21,7 @@
               <i class="material-icons"><%= Settings.icons_cached %></i>
             </div>
             <p class="card-category"><%= t ".inprogress" %></p>
-            <h3 class="card-title"></h3>
+            <h3 class="card-title"><%= @inprogress %></h3>
           </div>
           <div class="card-footer">
           </div>
@@ -34,7 +34,7 @@
               <i class="material-icons"><%= Settings.icons_done %></i>
             </div>
             <p class="card-category"><%= t ".completed" %></p>
-            <h3 class="card-title"></h3>
+            <h3 class="card-title"> <%= @completed %></h3>
           </div>
           <div class="card-footer">
           </div>
@@ -46,8 +46,8 @@
             <div class="card-icon">
               <i class="material-icons"><%= Settings.icons_https %></i>
             </div>
-            <p class="card-category"><%= t ".not_started" %></p>
-            <h3 class="card-title"></h3>
+            <p class="card-category"><%= t ".not_started_or_closed" %></p>
+            <h3 class="card-title"><%= @locked %></h3>
           </div>
           <div class="card-footer">
           </div>
@@ -55,7 +55,39 @@
       </div>
     </div>
     <div class="row">
-      <%= render @courses %>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title "><%= t ".your_courses" %></h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class=" text-primary">
+                  <th>
+                    #
+                  </th>
+                  <th>
+                    <%= t ".name" %>
+                  </th>
+                  <th>
+                    <%= t ".start" %>
+                  </th>
+                  <th>
+                    <%= t ".end" %>
+                  </th>
+                  <th>
+                    <%= t ".status" %>
+                  </th>
+                </thead>
+                <tbody>
+                  <%= render @courses %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

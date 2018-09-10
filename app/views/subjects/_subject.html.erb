@@ -1,6 +1,8 @@
 <tr>
   <td>
-    <%= link_to subject.name, course_subject_path(subject) %>
+  </td>
+  <td>
+    <%= link_to subject.name, course_subject_path(@course, subject), class: "text-dark" %>
   </td>
   <td>
     <%= subject.start_date %>
@@ -9,24 +11,26 @@
     <%= subject.end_date %>
   </td>
   <td>
-    <% unless subject.status %>
+    <% if subject.locked? %>
+      <i class="material-icons text-danger">lock</i>
+    <% elsif subject.closed? %>
+      <i class="material-icons text-danger">lock</i>
+    <% else %>
       <% if subject.tasks.count > 0 %>
         <% user_subject = find_user_subject(current_user, subject) %>
-        <% if user_subject.user_tasks.count > 0 %>
-          <%= link_to t(".next"), course_subject_path(@course, subject), class: "btn btn-success btn-sm btn-block" %>
-        <% else %>
-          <%= form_for find_user_subject(current_user, subject),
+        <% if user_subject.status %>
+          <i class="material-icons text-success">done</i>
+          <% elsif user_subject.user_tasks.count > 0 %>
+            <i class="material-icons text-warning">cached</i>
+          <% else %>
+            <%= form_for find_user_subject(current_user, subject),
             url: course_subject_user_subject_path(@course, subject, find_user_subject(current_user, subject)) do |f| %>
-            <%= f.submit t(".start"), class: "btn btn-primary btn-sm btn-block" %>
+              <%= f.submit t(".start"), class: "btn btn-primary btn-sm" %>
+            <% end %>
           <% end %>
+          <% else %>
+          <button class="btn btn-warning btn-sm"><%= t ".no_tasks" %></button>
         <% end %>
-      <% else %>
-        <button class="btn btn-warning btn-sm btn-block">
-          <%= t ".no_tasks" %></button>
       <% end %>
-    <% else %>
-      <button class="btn btn-danger btn-sm btn-block">
-        <%= t ".not_start" %></button>
-    <% end %>
   </td>
 </tr>

@@ -4,80 +4,51 @@
       <div class="col-lg-6 col-md-12">
         <div class="card">
           <div class="card-header card-header-primary">
-            <h4 class="card-title"><%= t ".tasks" %></h4>
+            <h4 class="card-title"><%= t(".tasks", count: @subject.tasks.count) %></h4>
             <p class="card-category"><%= t ".task_msg" %></p>
           </div>
           <div class="card-body">
             <div class="tab-content">
-              <div class="tab-pane active" id="profile">
-                <table class="table">
-                  <tbody>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" value="" checked>
-                            <span class="form-check-sign">
-                              <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>Aenean euismod metus nec dolor interdum lobortis. Nulla
-                      facilisi. Aliquam felis mi, vehicula quis lacus tempor, pretium
-                      sodales dolor.</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" value="" checked>
-                            <span class="form-check-sign">
-                              <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>Aenean euismod metus nec dolor interdum lobortis. Nulla
-                      facilisi. Aliquam felis mi, vehicula quis lacus tempor, pretium
-                      sodales dolor.</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" value="" checked>
-                            <span class="form-check-sign">
-                              <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>Aenean euismod metus nec dolor interdum lobortis. Nulla
-                      facilisi. Aliquam felis mi, vehicula quis lacus tempor, pretium
-                      sodales dolor.</td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" value="" checked>
-                            <span class="form-check-sign">
-                              <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-                      </td>
-                      <td>Aenean euismod metus nec dolor interdum lobortis. Nulla
-                      facilisi. Aliquam felis mi, vehicula quis lacus tempor, pretium
-                      sodales dolor.</td>
-                    </tr>
-                  </tbody>
-                </table>
-                <button type="submit" class="btn btn-primary pull-right">
-                  <%= t ".save" %>
-                </button>
-              </div>
+              <%= form_for @user_subject,
+                url: course_subject_user_subject_path(@course, @subject, find_user_subject(current_user, @subject)) do |f| %>
+                <div class="tab-pane active" id="profile">
+                  <table class="table table-hover">
+                    <tbody>
+                    <%= f.fields_for :user_tasks do |ff| %>
+                      <tr>
+                        <td></td>
+                        <% user_task = ff.object %>
+                        <% if user_task.status %>
+                          <td>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <%= ff.check_box :status, {checked: true, disabled: true, class: "form-check-input"}, 1, "" %>
+                                <span class="form-check-sign">
+                                  <span class="check"></span>
+                                </span>
+                              </label>
+                            </div>
+                          </td>
+                        <% else %>
+                          <td>
+                            <div class="form-check">
+                              <label class="form-check-label">
+                                <%= ff.check_box :status, {checked: false, class: "form-check-input"}, 1, "" %>
+                                <span class="form-check-sign">
+                                 <span class="check"></span>
+                                </span>
+                              </label>
+                            </div>
+                          </td>
+                        <% end %>
+                        <td><%= user_task.task.detail %></td>
+                      </tr>
+                    <% end %>
+                    </tbody>
+                  </table>
+                  <%= f.submit t(".save"), class: "btn btn-primary pull-right" %>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
@@ -85,29 +56,14 @@
       <div class="col-lg-6 col-md-12">
         <div class="card">
           <div class="card-header card-header-warning">
-            <h4 class="card-title"><%= t ".subject_name" %></h4>
+            <h4 class="card-title"><%= @subject.name %></h4>
             <p class="card-category"><%= t ".subject_detail" %></p>
           </div>
           <div class="card-body">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam justo
-              ipsum, congue sit amet mattis vel, ultrices eget quam. Sed facilisis,
-              urna ut varius dapibus, mi arcu tempor metus, ut vestibulum ante turpis
-              nec magna. Suspendisse posuere metus non aliquam elementum. Suspendisse
-              sollicitudin enim quis diam commodo, sed varius nulla iaculis. Morbi
-              efficitur laoreet semper. Etiam luctus nisl ac suscipit venenatis.
-              Maecenas pulvinar porttitor dolor quis auctor. Maecenas non ligula diam.
-              Donec rhoncus rhoncus neque, in tempor velit gravida ac. Quisque eget
-              risus congue, fringilla orci vel, dignissim erat. Praesent dignissim
-              turpis nisi, sit amet tincidunt diam imperdiet nec. Aliquam erat
-              volutpat. Pellentesque a tortor rutrum, pellentesque ante at, hendrerit
-              est. In congue, nulla pulvinar tristique convallis, sapien enim
-              consectetur ante, eget aliquet libero ipsum nec nibh. Donec et pharetra
-              augue.
+              <%= @subject.detail %>
             </p>
-            <button type="submit" class="btn btn-warning pull-right">
-              <%= t ".back" %>
-            </button>
+            <%= link_to t(".back"), course_path(@course), class: "btn btn-warning pull-right" %>
           </div>
         </div>
       </div>

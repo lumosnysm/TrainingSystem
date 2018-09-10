@@ -8,12 +8,11 @@
               <%= @course.name %>
             </h4>
             <p class="card-category">
-              <%= @course.description %>
             </p>
           </div>
           <div class="card-body">
             <p>
-              <%= @course.detail %>
+              <%= @course.description %>
             </p>
           </div>
         </div>
@@ -21,13 +20,17 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-primary">
-            <h4 class="card-title "><%= t ".subject" %></h4>
+            <h4 class="card-title "><%= t(".subject",
+              count: @course.subjects.count) %></h4>
             <p class="card-category"><%= t ".subject_msg" %></p>
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table">
+              <table class="table table-hover">
                 <thead class=" text-primary">
+                <th>
+                  #
+                </th>
                 <th>
                   <%= t ".subject_name" %>
                 </th>
@@ -48,6 +51,7 @@
             </div>
           </div>
         </div>
+        <%= link_to t(".back"), courses_path, class: "btn btn-primary btn-sm pull-right" %>
       </div>
     </div>
   </div>

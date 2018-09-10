@@ -1,32 +1,30 @@
-<div class="col-md-4">
-  <div class="card card-chart">
-    <div class="card-header card-header-success">
-      <h4 class="card-title"><%= t ".completed" %></h4>
-      <p class="card-category"><%= t ".completed_msg" %></p>
-    </div>
-    <div class="card-body">
-      <h4 class="card-title">
-        <%= course.name %>
-      </h4>
-      <p class="card-category">
-        <%= "#{course.start_date} - #{course.end_date}" %>
-      </p>
-    </div>
-    <div class="card-footer">
-      <div class="stats">
-        <i class="material-icons"><%= Settings.icons_access_time %></i>
-      </div>
-      <% if course.status.nil? %>
-        <p class="text-danger"><%= t ".not_start" %></p>
-      <% else %>
-        <% if course_start(course) %>
-          <%= link_to t(".next"), course_path(course), class: "text-success" %>
+<tr>
+  <td>
+  </td>
+  <td>
+    <%= link_to course.name, course_path(course), class: "text-dark" %>
+  </td>
+  <td>
+    <%= course.start_date %>
+  </td>
+  <td>
+    <%= course.end_date %>
+  </td>
+  <td>
+    <% if course.status.nil? %>
+      <i class="material-icons text-danger">lock</i>
+    <% else %>
+      <% if course_start course %>
+        <% if course_done course %>
+          <i class="material-icons text-success">done</i>
         <% else %>
-          <%= form_for course do |f| %>
-            <%= f.submit t(".start"), class: "btn btn-success btn-sm" %>
-          <% end %>
+          <i class="material-icons text-warning">cached</i>
+        <% end %>
+      <% else %>
+        <%= form_for course do |f| %>
+          <%= f.submit t(".start"), class: "btn btn-primary btn-sm" %>
         <% end %>
       <% end %>
-    </div>
-  </div>
-</div>
+    <% end %>
+  </td>
+</tr>

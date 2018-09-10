@@ -35,7 +35,7 @@ end
     description: description,
     start_date: start_date,
     end_date: end_date,
-    status: false
+    status: 1
 end
 
 50.times do |n|
@@ -52,17 +52,19 @@ end
     course_id: course_id,
     start_date: start_date,
     end_date: end_date,
-    status: false
+    status: 1
 end
 
 50.times do |n|
-  detail = FFaker::Lorem.sentence 10
-  subject_id = rand(1..50)
-  Task.create! detail: detail,
-    subject_id: subject_id
+  5.times do |m|
+    detail = FFaker::Lorem.sentence 10
+    subject_id = n+1
+    Task.create! detail: detail,
+      subject_id: subject_id
+  end
 end
 
-5.times do |n|
+10.times do |n|
   user_id = 2
   course_id = n+1
   Member.create! user_id: user_id,
