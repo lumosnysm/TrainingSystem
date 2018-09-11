@@ -71,3 +71,12 @@ end
   Member.create! user_id: user_id,
     course_id: course_id
 end
+
+50.times do |n|
+  user_id = 2
+  title = FFaker::Lorem.phrase
+  content = FFaker::Lorem.sentence 100
+  Report.create! user_id: user_id,
+  title: title,
+  content: content
+end

@@ -1,0 +1,22 @@
+<tr>
+  <td></td>
+  <td>
+    <p class="text-primary"><%= report.title %></p>
+  </td>
+  <td>
+    <%= report.content %>
+  </td>
+  <td>
+    <%= (report.updated_at).strftime t("time.formats.long") %>
+  </td>
+  <td>
+    <%= link_to edit_report_path(report),
+    class: "btn btn-primary btn-link btn-sm", rel: "tooltip", title: t(".edit") do %>
+      <i class="material-icons">edit</i>
+    <% end %>
+    <%= link_to report_path(report), method: :delete,
+    data: {confirm: t(".confirm")}, class: "btn btn-danger btn-link btn-sm", rel: "tooltip", title: t(".delete") do %>
+      <i class="material-icons">close</i>
+    <% end %>
+  </td>
+</tr>

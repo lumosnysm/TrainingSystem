@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   devise_for :users, path: "account",
     controllers: {sessions: "sessions", registrations: "users"}
   resources :users
+  resources :reports do
+    get "page/:page", action: :index, on: :collection
+  end
   resources :courses do
     resources :subjects, only: %i(show update) do
       resources :user_subjects
