@@ -1,18 +1,20 @@
 class CoursesController < ApplicationController
   before_action :authenticate_user!
   before_action :load_course, only: %i(show update)
-  before_action :check_start, only: :show
+  before_action :check_start, :check_close, only: :show
 
   def index
-    @courses = current_user.courses.not_closed.sort_by_date
-    @total = @courses.count
+    @q = current_user.courses.not_closed.sort_by_date.ransack params[:q]
+    @courses = @q.result.page(params[:page]).per Settings.per_page
+    @total = current_user.courses.not_closed.count
     @locked = current_user.count_courses_locked
     @inprogress = current_user.count_courses_inprogress
     @completed = current_user.count_courses_completed
   end
 
   def show
-    @subjects = @course.subjects
+    @q = @course.subjects.sort_by_date.ransack params[:q]
+    @subjects = @q.result.page(params[:page]).per Settings.per_page
   end
 
   def update
@@ -42,6 +44,12 @@ class CoursesController < ApplicationController
   def check_start
     return if current_user.courses_started.include? @course
     flash[:danger] = t ".course_not_started"
+    redirect_back fallback_location: root_url
+  end
+
+  def check_close
+    return unless @course.closed?
+    flash[:danger] = t ".course_closed"
     redirect_back fallback_location: root_url
   end
 end

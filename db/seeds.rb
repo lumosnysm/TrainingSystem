@@ -1,17 +1,16 @@
 User.create! email: "admin@ts.com",
+  name: "Admin",
   password: "111111",
   password_confirmation: "111111",
   supervisor: 1
-
-User.create! email: "user@ts.com",
-  password: "111111",
-  password_confirmation: "111111"
 
 50.times do |n|
   email = "user#{n+1}@ts.com"
   password = "111111"
   password_confirmation = "111111"
+  name = FFaker::Name.name
   User.create! email: email,
+    name: name,
     password: password,
     password_confirmation: password_confirmation
 end
@@ -20,7 +19,9 @@ end
   email = "admin#{n+1}@ts.com"
   password = "111111"
   password_confirmation = "111111"
+  name = FFaker::Name.name
   User.create! email: email,
+    name: name,
     password: password,
     password_confirmation: password_confirmation,
     supervisor: 1
