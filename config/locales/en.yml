@@ -11,6 +11,7 @@ en:
       trainee: "Role: Trainee"
       create_account: "Create Account"
       courses: "Courses"
+      all_users: "All Users"
 
   static_pages:
     home:
@@ -57,6 +58,8 @@ en:
       start: "Start date"
       end: "End date"
       status: "Status"
+      search: "Search by name"
+      results_found: "%{count} results found."
     show:
       course_name: "Course name"
       course_desc: "Course description"
@@ -68,6 +71,16 @@ en:
       subject_stt: "Status"
       start: "Start"
       course_not_started: "This course is not started."
+      search: "Search by name"
+      results_found: "%{count} results found."
+      course_closed: "Course closed."
+      search: "Search by name"
+      results_found: "%{count} results found."
+      total_trainees: "Trainees in courses: %{count}"
+      trainee_name: "Trainee's name"
+    update:
+      create_success: "Start course"
+
   user_subjects:
     update:
       create_success: "Create success"
@@ -75,6 +88,26 @@ en:
       subject_not_exist: "Subject is not exist"
       course_not_exist: "Course is not exist"
       subject_not_started: "Subject is not exist"
+
+  users:
+    edit:
+      not_correct_user: "You are not the correct user!!!"
+    show:
+      trainee: "Role: Trainee"
+      supervisor: "Role: Supervisor"
+      created: "Created: "
+      updated: "Updated: "
+      ago: "ago."
+      email: "Email: "
+      courses_in: "User's courses (%{count} courses): "
+      edit: "Edit profile"
+      closed: "(Closed)"
+      not_start: "(Not start)"
+      inprogress: "(Inprogress)"
+      done: "(Done)"
+      not_done: "(Not done)"
+      search: "Search by course's name"
+      results_found: "%{count} results found."
 
   supervisor:
     courses:
@@ -86,6 +119,8 @@ en:
         course_ed: "End date"
         course_stt: "Status"
         add_course: "Add new course"
+        search: "Search by name"
+        results_found: "%{count} results found."
       show:
         subject: "Subjects in course: "
         subject_msg: "Here is list of subjects in course"
@@ -146,6 +181,8 @@ en:
       destroy:
         deleted_success: "Member deleted!"
         deleted_fail: "Fail to delete member!"
+        destroy_success: "Member deleted!"
+        destroy_fail: "Fail to delete member!"
       create:
         create_success: "Member created!"
         create_fail: "Fail to create member!"
@@ -163,3 +200,63 @@ en:
       create_fail: "Create fail"
     load_course:
       course_not_exist: "Course is not exist"
+
+    users:
+      index:
+        user_name: "Name"
+        user_email: "Email"
+        user_role: "Role"
+        users: "Users"
+        users_total: "Total users: %{count}"
+        search: "Search by name"
+        results_found: "%{count} results found."
+      user:
+        edit: "Edit"
+        trainee: "Trainee"
+        supervisor: "Supervisor"
+
+  public_activity:
+    course:
+      update:
+        ago: "ago"
+        supervisor: "(Supervisor)"
+        trainee: "(Trainee)"
+        you: "You"
+        update_course: ": update this course."
+        start_course: ": start course"
+    user_subject:
+      save_task:
+        you: "You"
+        ago: "ago"
+        trainee: "(Trainee)"
+        save_task: ": saved some tasks"
+      start:
+        you: "You"
+        ago: "ago"
+        trainee: "(Trainee)"
+        start_subject: ": start subject"
+      update:
+        you: "You"
+        ago: "ago"
+        trainee: "(Trainee)"
+        complete_subject: ": complete subject"
+    user_task:
+      update:
+        you: "You"
+        ago: "ago"
+        trainee: "(Trainee)"
+        done_task: ": completed task"
+        not_done_task: ": not complete task"
+    member:
+      create:
+        ago: "ago"
+        supervisor: "(Supervisor)"
+        you: "You"
+        add_trainee: ": add trainee "
+        to_course: " to course."
+      destroy:
+        ago: "ago"
+        supervisor: "(Supervisor)"
+        you: "You"
+        remove_trainee: ": remove trainee "
+        from_course: " from course."

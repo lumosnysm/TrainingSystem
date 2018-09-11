@@ -1,0 +1,114 @@
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card card-profile">
+          <div class="card-body">
+            <h6 class="card-category text-gray">
+              <strong>
+                <% if @user.supervisor? %>
+                  <%= t ".supervisor" %>
+                <% else %>
+                  <%= t ".trainee" %>
+                <% end %>
+                </strong>
+            </h6>
+            <h4 class="card-title"><%= @user.name %></h4>
+            <div class="card-description text-left">
+              <p>
+                <strong><%= t(".courses_in", count: @user.courses.count) %></strong>
+                <% @user.courses.each do |course| %>
+                  <%= course.name %>,
+                <% end %>
+              </p>
+              <p>
+                <strong><%= t ".email" %></strong>
+                <%= @user.email %>
+              </p>
+              <p>
+                <strong><%= t ".created" %></strong>
+                <%= time_ago_in_words @user.created_at %>
+                <%= t ".ago" %>
+                <strong><%= t ".updated" %></strong>
+                <%= time_ago_in_words @user.updated_at %>
+                <%= t ".ago" %>
+              </p>
+            </div>
+            <% if current_user.supervisor? || current_user.correct_user(@user) %>
+              <%= link_to t(".edit"), edit_user_registration_path(user_id: @user),
+                class: "btn btn-primary btn-round" %>
+            <% end %>
+          </div>
+        </div>
+        <%= search_form_for @q, url: @user,
+          class: "navbar-form w-50" do |f| %>
+          <div class="input-group no-border">
+            <%= f.search_field :name_cont, class: "form-control",
+              placeholder: t(".search") %>
+            <%= f.submit class:"btn btn-primary btn-sm" %>
+          </div>
+        <% end %>
+        <%= t(".results_found", count: @q.result.count) %>
+      </div>
+      <% @courses.each do |course| %>
+      <div class="col-md-12 font-weight-bold">
+        <div class="card card-profile">
+          <div class="card-body">
+            <h4 class="card-title">
+              <%= course.name %>
+              <% if course.check_closed %>
+                <span class="text-danger"><%= t ".closed" %></span>
+              <% else %>
+                <% if @user.check_course_start course %>
+                  <% if @user.check_course_done course %>
+                    <span class="text-success"><%= t ".done" %></span>
+                  <% else %>
+                    <span class="text-warning"><%= t ".inprogress" %></span>
+                  <% end %>
+                <% else %>
+                  <span class="text-info"><%= t ".not_start" %></span>
+                <% end %>
+              <% end %>
+            </h4>
+            <div class="card-description text-left">
+              <ul>
+                <% course.subjects.each do |subject| %>
+                <li>
+                  <%= subject.name %>
+                  <% if subject.check_closed %>
+                    <span class="text-danger"><%= t ".closed" %></span>
+                  <% else %>
+                    <% if @user.check_subject_start subject %>
+                      <% if @user.check_subject_done subject %>
+                        <span class="text-success"><%= t ".done" %></span>
+                      <% else %>
+                        <span class="text-warning"><%= t ".inprogress" %></span>
+                      <% end %>
+                    <% else %>
+                      <span class="text-info"><%= t ".not_start" %></span>
+                    <% end %>
+                  <% end %>
+                </li>
+                <ul>
+                  <% subject.tasks.each do |task| %>
+                    <li>
+                      <%= task.detail %>
+                      <% if @user.check_task_done(task, subject) %>
+                        <span class="text-success"><%= t ".done" %></span>
+                      <% else %>
+                        <span class="text-danger"><%= t ".not_done" %></span>
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <%= paginate @courses %>
+    </div>
+  </div>
+</div>

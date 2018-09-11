@@ -13,8 +13,13 @@
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
         html: {class: "login100-form flex-sb flex-w"}) do |f| %>
         <div class="wrap-input100 validate-input m-b-16">
+          <%= f.text_field :name, autofocus: true,
+            autocomplete: "name", class: "input100", placeholder: t(".username") %>
+          <span class="focus-input100"></span>
+        </div>
+        <div class="wrap-input100 validate-input m-b-16">
           <%= f.email_field :email, autofocus: true,
-            autocomplete: "email", class: "input100", placeholder: t(".username") %>
+            autocomplete: "email", class: "input100", placeholder: t(".useremail") %>
           <span class="focus-input100"></span>
         </div>
         <div class="wrap-input100 validate-input m-b-16">

@@ -1,0 +1,18 @@
+<% member = Member.with_deleted.find_by id: activity.trackable_id %>
+<% if activity_of_course member, @course %>
+  <li>
+    <% if current_user.id == activity.owner.id %>
+      <strong class="text-success"><%= "#{t('.supervisor')} #{t('.you')}" %></strong>
+    <% else %>
+      <strong class="text-danger">
+        <%= "#{t('.supervisor')} #{activity.owner.name}" %>
+      </strong>
+    <% end %>
+    <span class="text-warning"><%= t ".remove_trainee" %></span>
+    <strong><%= member.user.name %></strong>
+    <%= t ".from_course" %>
+    <ul>
+      <li><%= "#{time_ago_in_words activity.created_at} #{t('.ago')}" %></li>
+    </ul>
+  </li>
+<% end %>

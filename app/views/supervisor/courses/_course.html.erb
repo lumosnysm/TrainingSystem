@@ -1,5 +1,7 @@
 <tr>
   <td>
+  </td>
+  <td>
     <%= link_to course.name, supervisor_course_path(course), class: "text-dark" %>
   </td>
   <td>
@@ -9,16 +11,16 @@
     <%= course.start_date %>
   </td>
   <td>
-    <% if course.status.nil? %>
+    <% if course.locked? %>
       <%= form_for course, url: supervisor_course_path(course) do |f| %>
-        <%= f.hidden_field :status, value: 0 %>
+        <%= f.hidden_field :status, value: Course.statuses[:opening] %>
         <%= f.submit t(".start"), class: "btn btn-success btn-sm" %>
       <% end %>
-    <% elsif course.status %>
+    <% elsif course.closed? %>
       <p class="text-danger"><%= t ".finished" %></p>
     <% else %>
       <%= form_for course, url: supervisor_course_path(course) do |f| %>
-        <%= f.hidden_field :status, value: 1 %>
+        <%= f.hidden_field :status, value: Course.statuses[:closed] %>
         <%= f.submit t(".finish"), class: "btn btn-danger btn-sm" %>
       <% end %>
     <% end %>

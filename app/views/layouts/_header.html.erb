@@ -12,7 +12,8 @@
         <% end %>
       </li>
       <li class="nav-item">
-        <%= link_to "#", class: "nav-link" do %>
+        <%= link_to current_user,
+          class: "nav-link" do %>
           <i class="material-icons">person</i>
           <p><%= t ".profile" %></p>
         <% end %>
@@ -28,6 +29,12 @@
           <%= link_to supervisor_courses_path, class: "nav-link" do %>
             <i class="material-icons">content_paste</i>
             <p><%= t ".courses" %></p>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to supervisor_users_path, class: "nav-link" do %>
+            <i class="material-icons">people</i>
+            <p><%= t ".all_users" %></p>
           <% end %>
         </li>
       <% else %>

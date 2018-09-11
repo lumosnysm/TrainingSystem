@@ -15,4 +15,18 @@ module ApplicationHelper
     end
     return member
   end
+
+  def activity_of_course trackable, course
+    if trackable.class.to_s == Course.name
+      return trackable.id == course.id
+    elsif trackable.class.to_s == UserSubject.name
+      return course.id == trackable.course_id
+    elsif trackable.class.to_s == UserTask.name
+      return course.id == trackable.user_subject.course_id
+    elsif trackable.class.to_s == Member.name
+      return course.id == trackable.course_id
+    else
+      return false
+    end
+  end
 end

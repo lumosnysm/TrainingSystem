@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   root to: "static_pages#home"
   devise_for :users, path: "account",
     controllers: {sessions: "sessions", registrations: "users"}
+  devise_scope :user do
+    match "/users/:id", to: "users#show", via: "get"
+  end
   resources :users
   resources :courses do
     resources :subjects, only: %i(show update) do
@@ -10,6 +13,7 @@ Rails.application.routes.draw do
   end
   namespace :supervisor do
     resources :members
+    resources :users
     resources :courses do
       resources :subjects
     end

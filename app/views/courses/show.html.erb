@@ -18,6 +18,14 @@
         </div>
       </div>
       <div class="col-md-12">
+        <%= search_form_for @q, url: course_path(@course),
+          class: "navbar-form w-50" do |f| %>
+          <div class="input-group no-border">
+            <%= f.search_field :name_cont, class: "form-control",
+              placeholder: t(".search") %>
+            <%= f.submit class:"btn btn-primary btn-sm" %>
+          </div>
+        <% end %>
         <div class="card">
           <div class="card-header card-header-primary">
             <h4 class="card-title "><%= t(".subject",
@@ -26,19 +34,27 @@
           </div>
           <div class="card-body">
             <div class="table-responsive">
+              <%= paginate @subjects %>
+              <%= t(".results_found", count: @q.result.count) %>
               <table class="table table-hover">
                 <thead class=" text-primary">
                 <th>
                   #
                 </th>
                 <th>
-                  <%= t ".subject_name" %>
+                  <%= sort_link(@q, :name) do %>
+                    <%= t ".subject_name" %>
+                  <% end %>
                 </th>
                 <th>
-                  <%= t ".subject_sd" %>
+                  <%= sort_link(@q, :start_date) do %>
+                    <%= t ".subject_sd" %>
+                  <% end %>
                 </th>
                 <th>
-                  <%= t ".subject_ed" %>
+                  <%= sort_link(@q, :end_date) do %>
+                    <%= t ".subject_ed" %>
+                  <% end %>
                 </th>
                 <th>
                   <%= t ".subject_stt" %>
@@ -48,10 +64,51 @@
                   <%= render @subjects %>
                 </tbody>
               </table>
+              <%= paginate @subjects %>
             </div>
           </div>
         </div>
         <%= link_to t(".back"), courses_path, class: "btn btn-primary btn-sm pull-right" %>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <%= t(".total_trainees",
+               count: @course.users.trainee.count) %>
+              <table class="table table-hover">
+                <thead class="text-primary">
+                <th>
+                  #
+                </th>
+                <th>
+                  <%= sort_link(@q, :name) do %>
+                    <%= t ".trainee_name" %>
+                  <% end %>
+                </th>
+                </thead>
+                <tbody>
+                  <%= render partial: "trainees_in_course", collection: @trainees,
+                    as: :user %>
+                </tbody>
+              </table>
+              <%= paginate @trainees %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title ">Activity</h4>
+          </div>
+          <div class="card-body">
+            <ul>
+              <%= render_activities @activities %>
+            </ul>
+            <%= paginate @activities %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
