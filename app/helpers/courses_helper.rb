@@ -9,6 +9,6 @@ module CoursesHelper
   end
 
   def count_user_subject course
-    current_user.user_subjects.find_by_course(course).where(status: true).count
+    current_user.user_subjects.find_by_course(course).count
   end
 end
