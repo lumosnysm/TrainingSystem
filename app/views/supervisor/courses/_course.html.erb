@@ -8,29 +8,29 @@
     <%= course.start_date %>
   </td>
   <td>
-    <%= course.start_date %>
+    <%= course.end_date %>
   </td>
   <td>
     <% if course.locked? %>
-      <%= form_for course, url: supervisor_course_path(course) do |f| %>
+      <%= form_for course, url: supervisor_course_path(course.id) do |f| %>
         <%= f.hidden_field :status, value: Course.statuses[:opening] %>
         <%= f.submit t(".start"), class: "btn btn-success btn-sm" %>
       <% end %>
     <% elsif course.closed? %>
       <p class="text-danger"><%= t ".finished" %></p>
     <% else %>
-      <%= form_for course, url: supervisor_course_path(course) do |f| %>
+      <%= form_for course, url: supervisor_course_path(course.id) do |f| %>
         <%= f.hidden_field :status, value: Course.statuses[:closed] %>
         <%= f.submit t(".finish"), class: "btn btn-danger btn-sm" %>
       <% end %>
     <% end %>
   </td>
   <td>
-    <%= link_to edit_supervisor_course_path(course),
+    <%= link_to edit_supervisor_course_path(course.id),
       class: "btn btn-primary btn-link btn-sm",rel: "tooltip", title: t(".edit") do %>
        <i class="material-icons">edit</i>
     <% end %>
-    <%= link_to supervisor_course_path(course), method: :delete,
+    <%= link_to supervisor_course_path(course.id), method: :delete,
       data: {confirm: t(".confirm")}, class: "btn btn-danger btn-link btn-sm",rel: "tooltip",title: t(".delete") do %>
        <i class="material-icons">close</i>
     <% end %>

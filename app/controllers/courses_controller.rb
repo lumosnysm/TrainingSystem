@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   include PublicActivity::StoreController
   before_action :authenticate_user!
-  before_action :load_course, only: %i(show update)
+  before_action :load_course, :check_in_course, only: %i(show update)
   before_action :check_start, :check_close, only: :show
 
   def index
@@ -58,5 +58,11 @@ class CoursesController < ApplicationController
     return unless @course.closed?
     flash[:danger] = t ".course_closed"
     redirect_back fallback_location: root_url
+  end
+
+  def check_in_course
+    return if current_user.courses.include? @course
+    flash[:danger] = t ".not_in_course"
+    redirect_to courses_url
   end
 end

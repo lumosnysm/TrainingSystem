@@ -21,9 +21,11 @@ class Supervisor::SubjectsController < Supervisor::SupervisorBaseController
   end
 
   def load_subject
-    @subject = Subject.find_by id: params[:id]
-    return if @subject
-    flash[:danger] = t ".subject_not_found"
-    redirect_back fallback_location: root_url
+    begin
+      @subject = Subject.find params[:id]
+    rescue
+      flash[:danger] = t ".subject_not_found"
+      redirect_back fallback_location: root_url
+    end
   end
 end

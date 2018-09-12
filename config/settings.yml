@@ -11,3 +11,4 @@ show_limit:
   show_30: 30
   show_50: 50
 per_page_50: 50
+per_page_5: 5

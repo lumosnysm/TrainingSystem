@@ -34,6 +34,7 @@ en:
       user_subject_not_exist: "User subject is not exist"
       subject_not_started: "Subject is not started"
       course_not_exist: "Course is not exist"
+      not_in_course: "You are not a member of this course"
     subject:
       not_start: "Not Start"
       finished: "Finished"
@@ -80,6 +81,7 @@ en:
       results_found: "%{count} results found."
       course_closed: "Course closed."
       course_not_exist: "Course is not exist"
+      not_in_course: "You are not a member of this course"
     update:
       create_success: "Course created"
       create_fail: "Fail to create course!"
@@ -221,7 +223,7 @@ en:
       user_not_in_course:
         add: "Add to course"
       user_in_course:
-        remove: "Remove from course"
+        remove: "Remove"
         confirm: "You sure ?"
 
     members:
@@ -271,6 +273,11 @@ en:
         you: "You"
         update_course: ": update this course."
         start_course: ": start course"
+      create:
+        ago: "ago"
+        supervisor: "(Supervisor)"
+        you: "You"
+        create_course: ": create this course."
     user_subject:
       save_task:
         you: "You"

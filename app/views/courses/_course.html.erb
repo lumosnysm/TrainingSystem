@@ -11,7 +11,7 @@
     <%= course.end_date %>
   </td>
   <td>
-    <% if course.status.nil? %>
+    <% if course.locked? %>
       <i class="material-icons text-danger">lock</i>
     <% else %>
       <% if course_start course %>
