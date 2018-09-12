@@ -63,9 +63,13 @@ class Supervisor::CoursesController < Supervisor::SupervisorBaseController
   def course_params
     p = params.require(:course).permit :name, :description,
       :start_date, :end_date, :status, subjects_attributes:
-      [:id, :name, :description, :detail, :start_date, :end_date, :_destroy,
+      [:id, :name, :description, :detail, :status, :start_date, :end_date, :_destroy,
       tasks_attributes: [:id, :detail, :_destroy]]
     p[:status] = params[:course][:status].to_i
+    pp = params[:course][:subjects_attributes]
+    pp.each do |k, v|
+      p[:subjects_attributes][k][:status] = pp[k][:status].to_i
+    end
     p
   end
 
