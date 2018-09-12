@@ -1,10 +1,12 @@
 class UserSubjectsController < ApplicationController
+  include PublicActivity::StoreController
   before_action :authenticate_user!
   before_action :load_subject, :load_course, :load_user_subject
   after_action :check_subject_complete
 
   def update
     if params[:commit] == "Start"
+      @user_subject.create_activity :start, owner: current_user
       @subject.tasks.each do |task|
         @user_subject.user_tasks.build(task_id: task.id)
       end
@@ -16,6 +18,7 @@ class UserSubjectsController < ApplicationController
         redirect_back fallback_location: root_url
       end
     elsif params[:commit] == "Save"
+      @user_subject.create_activity :save_task, owner: current_user
       if @user_subject.update_attributes user_subject_params
         flash[:success] = t ".update_success"
       else

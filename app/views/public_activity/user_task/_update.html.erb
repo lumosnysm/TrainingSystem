@@ -1,0 +1,18 @@
+<% if activity_of_course activity.trackable, @course %>
+  <li>
+    <% if current_user.id == activity.owner.id %>
+      <strong class="text-success"><%= "#{t('.trainee')} #{t('.you')}" %></strong>
+    <% else %>
+      <strong><%= "#{t('.trainee')} #{activity.owner.name}" %></strong>
+    <% end %>
+    <% if activity.trackable.status %>
+      <span class="text-success"><%= t ".done_task" %></span>
+    <% else %>
+      <span class="text-warning"><%= t ".not_done_task" %></span>
+    <% end %>
+    <strong><%= activity.trackable.task.detail %></strong>
+    <ul>
+      <li><%= "#{time_ago_in_words activity.created_at} #{t('.ago')}" %></li>
+    </ul>
+  </li>
+<% end %>

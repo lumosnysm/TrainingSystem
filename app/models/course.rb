@@ -2,7 +2,7 @@ class Course < ApplicationRecord
   enum status: {locked: 0, opening: 1, closed: 2}
   has_many :subjects, dependent: :destroy
   has_many :users_in, class_name: Member.name,
-    foreign_key: :course_id, dependent: :destroy
+    foreign_key: :course_id, dependent: :delete_all
   has_many :users, through: :users_in, source: :user
   has_many :user_subjects, dependent: :destroy
   scope :lastest, ->{order updated_at: :desc}
@@ -17,4 +17,6 @@ class Course < ApplicationRecord
   has_many :user_subjects
   extend FriendlyId
   friendly_id :name, use: %i(slugged finders)
+  include PublicActivity::Model
+  tracked owner: Proc.new{|controller, model| controller.current_user}
 end

@@ -1,0 +1,14 @@
+<% if activity_of_course activity.trackable, @course %>
+  <li>
+    <% if current_user.id == activity.owner.id %>
+      <strong class="text-success"><%= "#{t('.trainee')} #{t('.you')}" %></strong>
+    <% else %>
+      <strong><%= "#{t('.trainee')} #{activity.owner.name}" %></strong>
+    <% end %>
+    <span class="text-primary"><%= t ".start_subject" %></span>
+    <strong><%= activity.trackable.subject.name %></strong>
+    <ul>
+      <li><%= "#{time_ago_in_words activity.created_at} #{t('.ago')}" %></li>
+    </ul>
+  </li>
+<% end %>

@@ -1,12 +1,19 @@
 class Supervisor::MembersController < Supervisor::SupervisorBaseController
+  include PublicActivity::StoreController
   before_action :load_member, only: :destroy
 
   def create
-    @member = Member.create member_params
-    if @member.save
-      flash[:success] = t ".create_success"
+    old = Member.only_deleted.find_by course_id: params[:member][:course_id],
+      user_id: params[:member][:user_id]
+    if old
+      old.restore
     else
-      flash[:danger] = t ".create_fail"
+      @member = Member.create member_params
+      if @member.save
+        flash[:success] = t ".create_success"
+      else
+        flash[:danger] = t ".create_fail"
+      end
     end
     redirect_back fallback_location: root_url
   end

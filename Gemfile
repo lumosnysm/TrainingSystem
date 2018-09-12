@@ -22,6 +22,8 @@ gem "kaminari"
 gem "ransack"
 gem "bootstrap-kaminari-views"
 gem "friendly_id"
+gem "public_activity"
+gem "paranoia"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
