@@ -21,6 +21,10 @@
     <% else %>
       <%= form_for course, url: supervisor_course_path(course.id) do |f| %>
         <%= f.hidden_field :status, value: Course.statuses[:closed] %>
+        <%= f.fields_for :subjects do |ff| %>
+         <% subject = ff.object %>
+         <% ff.hidden_field :status, value: Subject.statuses[:closed] %>
+        <% end %>
         <%= f.submit t(".finish"), class: "btn btn-danger btn-sm" %>
       <% end %>
     <% end %>
