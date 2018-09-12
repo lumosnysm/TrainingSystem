@@ -5,6 +5,8 @@ class Course < ApplicationRecord
     foreign_key: :course_id, dependent: :delete_all
   has_many :users, through: :users_in, source: :user
   has_many :user_subjects, dependent: :destroy
+  has_many :activities, as: :trackable, class_name: PublicActivity::Activity.name,
+   dependent: :destroy
   scope :lastest, ->{order updated_at: :desc}
   scope :fields, ->{select :id, :name, :start_date, :end_date, :status}
   scope :find_by_ids, ->(ids){where id: ids}
