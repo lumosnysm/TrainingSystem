@@ -67,8 +67,10 @@ class Supervisor::CoursesController < Supervisor::SupervisorBaseController
       tasks_attributes: [:id, :detail, :_destroy]]
     p[:status] = params[:course][:status].to_i
     pp = params[:course][:subjects_attributes]
-    pp.each do |k, v|
-      p[:subjects_attributes][k][:status] = pp[k][:status].to_i
+    if pp
+      pp.each do |k, v|
+        p[:subjects_attributes][k][:status] = pp[k][:status].to_i
+      end
     end
     p
   end

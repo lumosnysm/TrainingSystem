@@ -1,5 +1,6 @@
 <div class="content">
   <%= form_for @course, url: supervisor_course_path do |f| %>
+    <%= f.hidden_field :status, value: Course.statuses[@course.status] %>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
