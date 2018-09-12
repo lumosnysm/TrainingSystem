@@ -9,4 +9,8 @@ class Subject < ApplicationRecord
   has_many :user_subjects, dependent: :destroy
   extend FriendlyId
   friendly_id :name, use: %i(slugged finders)
+
+  def should_generate_new_friendly_id?
+    name_changed? || super
+  end
 end

@@ -21,4 +21,8 @@ class Course < ApplicationRecord
   friendly_id :name, use: %i(slugged finders)
   include PublicActivity::Model
   tracked owner: Proc.new{|controller, model| !controller.nil? ? controller.current_user : User.first}
+
+  def should_generate_new_friendly_id?
+    name_changed? || super
+  end
 end
