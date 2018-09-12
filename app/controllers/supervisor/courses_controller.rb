@@ -46,7 +46,7 @@ class Supervisor::CoursesController < Supervisor::SupervisorBaseController
     else
       flash[:danger] = t ".update_fail"
     end
-    redirect_back fallback_location: root_url
+    redirect_to supervisor_courses_url
   end
 
   def destroy
