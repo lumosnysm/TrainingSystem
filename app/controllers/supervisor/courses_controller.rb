@@ -4,7 +4,7 @@ class Supervisor::CoursesController < Supervisor::SupervisorBaseController
 
   def index
     @q = Course.lastest.ransack params[:q]
-    @courses = @q.result.fields.page(params[:page]).per Settings.per_page
+    @courses = @q.result.page(params[:page]).per Settings.per_page
   end
 
   def new
@@ -14,14 +14,16 @@ class Supervisor::CoursesController < Supervisor::SupervisorBaseController
   def show
     @subjects = @course.subjects
     @trainees_in_course = @course.users.trainee.
-      page(params[:trainees_in]).per Settings.per_page
+      page(params[:trainees_in]).per Settings.per_page_5
     @trainees_not_in_course = User.trainee.not_in_course(@course).
-      page(params[:trainees_not_in]).per Settings.per_page
+      page(params[:trainees_not_in]).per Settings.per_page_5
     @supervisors_in_course = @course.users.supervisor.
-      page(params[:supervisors_in]).per Settings.per_page
+      page(params[:supervisors_in]).per Settings.per_page_5
     @supervisors_not_in_course = User.supervisor.not_in_course(@course).
-      page(params[:supervisors_not_in]).per Settings.per_page
+      page(params[:supervisors_not_in]).per Settings.per_page_5
     @member = Member.new
+    @activities = PublicActivity::Activity.all.order(created_at: :desc).
+      page(params[:page]).per Settings.per_page_50
   end
 
   def edit; end
@@ -68,9 +70,11 @@ class Supervisor::CoursesController < Supervisor::SupervisorBaseController
   end
 
   def load_course
-    @course = Course.find_by id: params[:id]
-    return if @course
-    flash[:danger] = t ".course_not_found"
-    redirect_back fallback_location: root_url
+    begin
+      @course = Course.find params[:id]
+    rescue
+      flash[:danger] = t ".course_not_found"
+      redirect_back fallback_location: root_url
+    end
   end
 end

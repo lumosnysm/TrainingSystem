@@ -1,0 +1,13 @@
+<% if activity_of_course activity.trackable, @course %>
+  <li>
+    <% if current_user.id == activity.owner.id %>
+    <strong class="text-success"><%= "#{t('.supervisor')} #{t('.you')}" %></strong>
+    <% else %>
+      <strong class="text-danger"><%= "#{t('.supervisor')} #{activity.owner.name}" %></strong>
+    <% end %>
+    <span class="text-info"><%= t ".create_course" %></span>
+    <ul>
+      <li><%= "#{time_ago_in_words activity.created_at} #{t('.ago')}" %></li>
+    </ul>
+  </li>
+<% end %>

@@ -1,6 +1,7 @@
 class SubjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :load_subject, :load_user_subject, :load_course, :check_start
+  before_action :load_subject, :load_user_subject,
+    :load_course, :check_in_course, :check_start
 
   def show
     @tasks = @subject.tasks
@@ -42,5 +43,11 @@ class SubjectsController < ApplicationController
       flash[:danger] = t ".course_not_exist"
       redirect_back fallback_location: root_url
     end
+  end
+
+  def check_in_course
+    return if current_user.courses.include? @course
+    flash[:danger] = t ".not_in_course"
+    redirect_to courses_url
   end
 end
