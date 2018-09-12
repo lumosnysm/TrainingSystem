@@ -4,7 +4,8 @@
     <%= user.name %>
   </td>
   <td class="w-25">
-    <%= link_to t(".remove"), supervisor_member_path(find_member(user, @course)),
+    <%= link_to t(".remove"), supervisor_member_path(find_member(user, @course),
+      user_id: user.id, course_id: @course.id),
       method: :delete, data: {confirm: t(".confirm")}, class: "btn btn-danger btn-danger btn-sm" %>
   </td>
 </tr>

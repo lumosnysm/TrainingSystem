@@ -314,3 +314,13 @@ en:
         you: "You"
         remove_trainee: ": remove trainee "
         from_course: " from course."
+
+  user_mailer:
+    assign_trainee:
+      hi: "Hi!,"
+      message: "You have been added to course: "
+      subject: "Welcome to course"
+    remove_trainee:
+      hi: "Hi!,"
+      message: "You have been kicked out of course: "
+      subject: "Say goodbye to course"
