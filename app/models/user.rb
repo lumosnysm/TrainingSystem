@@ -1,18 +1,17 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+    :recoverable, :rememberable, :validatable
   has_many :courses_in, class_name: Member.name,
     foreign_key: :user_id
   has_many :courses, through: :courses_in, source: :course
   has_many :user_subjects, class_name: UserSubject.name,
-           foreign_key: :user_id
+    foreign_key: :user_id
   has_many :courses_started, through: :user_subjects, source: :course
   has_many :reports
   scope :trainee, ->{where supervisor: false}
   scope :supervisor, ->{where supervisor: true}
   scope :not_in_course, ->(course) {where.not id: course.users.ids}
   scope :lastest, ->{order created_at: :desc}
-
 
   def check_course_start course
     user_subjects.where(course_id: course.id).count == 0
