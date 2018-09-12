@@ -1,8 +1,9 @@
 <tr>
+  <td></td>
   <td>
-    <%= user.email %>
+    <%= user.name %>
   </td>
-  <td>
+  <td class="w-25">
     <%= form_for @member, url: supervisor_members_path do |f| %>
     <%= f.hidden_field :user_id, value: user.id %>
     <%= f.hidden_field :course_id, value: @course.id %>
