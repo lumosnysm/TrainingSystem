@@ -82,6 +82,7 @@ en:
       course_closed: "Course closed."
       course_not_exist: "Course is not exist"
       not_in_course: "You are not a member of this course"
+      total_trainees: "Trainees in courses: %{count}"
     update:
       create_success: "Course created"
       create_fail: "Fail to create course!"
@@ -117,8 +118,8 @@ en:
       not_correct_user: "Not correct user"
       report_not_exist: "Report is not exist"
     destroy:
-      destroy_success: "Report deleted!"
-      destroy_fail: "Fail to delete report!"
+      delete_success: "Report deleted!"
+      delete_fail: "Fail to delete report!"
       not_correct_user: "Not correct user"
       report_not_exist: "Report is not exist"
     edit:
