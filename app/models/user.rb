@@ -30,7 +30,7 @@ class User < ApplicationRecord
   end
 
   def count_courses_inprogress
-    @courses = courses_started.distinct.where(status: :opening)
+    @courses = courses_started.where(id: courses.ids).distinct.where(status: :opening)
     return @courses.reject{|c| c.subjects.count == user_subjects.find_by_course(c).count}.count
   end
 
