@@ -26,22 +26,17 @@ class User < ApplicationRecord
   end
 
   def count_courses_locked
-    courses.distinct.find_by_status(Course.statuses[:locked]).count
+    courses.where(status: :locked).count
   end
 
   def count_courses_inprogress
-    courses.find_by_status(Course.statuses[:opening]).
-    find_by_ids(user_subjects.find_by_status(false).
-    group(:course_id).pluck(:course_id)).count
-  end
-
-  def count_courses_not_start
-    courses.distinct.count - courses_started.distinct.count
+    @courses = courses_started.distinct.where(status: :opening)
+    return @courses.reject{|c| c.subjects.count == user_subjects.find_by_course(c).count}.count
   end
 
   def count_courses_completed
-    cs_started = courses_started.not_closed.distinct.count
-    cs_started - count_courses_inprogress
+    @courses = courses_started.where(id: courses.ids).distinct.where(status: :opening)
+    return @courses.select{|c| c.subjects.count == user_subjects.find_by_course(c).count}.count
   end
 
   def check_course_done course
