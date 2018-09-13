@@ -18,6 +18,8 @@
             </p>
           </div>
           <div class="card-body">
+            <%= link_to t(".add_course"), new_supervisor_course_path,
+              class: "btn btn-primary pull-right" %>
             <%= t(".results_found", count: @q.result.count) %>
             <div class="table-responsive">
               <table class="table">
@@ -52,8 +54,6 @@
                 </tbody>
               </table>
               <%= paginate @courses %>
-              <%= link_to t(".add_course"), new_supervisor_course_path,
-                class: "btn btn-primary pull-right" %>
             </div>
           </div>
         </div>
