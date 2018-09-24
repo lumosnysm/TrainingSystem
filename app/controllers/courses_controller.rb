@@ -35,7 +35,7 @@ class CoursesController < ApplicationController
   private
 
   def load_course
-    @course = Course.find_by id: params[:id]
+    @course = Course.find_by slug: params[:id]
     return if @course
     flash[:danger] = t ".course_not_exist"
     redirect_back fallback_location: root_url

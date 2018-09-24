@@ -9,15 +9,15 @@ class SubjectsController < ApplicationController
   private
 
   def load_subject
-    @subject = Subject.find_by id: params[:id]
+    @subject = Subject.find_by slug: params[:id]
     return if @subject
     flash[:danger] = t ".subject_not_exist"
     redirect_back fallback_location: root_url
+
   end
 
-
   def check_start
-    user_subject = current_user.user_subjects.find_by(subject_id: params[:id])
+    user_subject = current_user.user_subjects.find_by(subject_id: @subject.id)
     if user_subject.nil?
       flash[:danger] = t ".user_subject_not_exist"
     else
@@ -35,7 +35,7 @@ class SubjectsController < ApplicationController
   end
 
   def load_course
-    @course = Course.find_by id: params[:course_id]
+    @course = Course.find_by slug: params[:course_id]
     return if @course
     flash[:danger] = t ".course_not_exist"
     redirect_back fallback_location: root_url
