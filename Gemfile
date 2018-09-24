@@ -26,6 +26,9 @@ gem "paranoia"
 gem "sidekiq"
 
 group :development, :test do
+  gem "rspec-rails"
+  gem "shoulda-matchers"
+  gem "factory_bot_rails"
   gem "sqlite3"
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
 end
@@ -38,9 +41,12 @@ group :development do
 end
 
 group :test do
+  gem "simplecov", require: false
   gem "capybara", ">= 2.15"
   gem "selenium-webdriver"
   gem "chromedriver-helper"
+  gem "geckodriver-helper"
+  gem "poltergeist"
 end
 
 group :production do

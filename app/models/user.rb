@@ -14,6 +14,7 @@ class User < ApplicationRecord
   scope :supervisor, ->{where supervisor: true}
   scope :not_in_course, ->(course) {where.not id: course.users.ids}
   scope :lastest, ->{order created_at: :desc}
+  validates :email, :name, presence: true
 
   def check_course_start course
     user_subjects.where(course_id: course.id).count > 0
